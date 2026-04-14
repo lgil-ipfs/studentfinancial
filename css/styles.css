@@ -147,18 +147,15 @@ nav {
     gap: 12px;
 }
 
-.logo-monogram {
-    width: 40px;
+.logo-icon {
+    height: 48px;
+    width: auto;
+    mix-blend-mode: screen; /* Hides the black background of the lime green icon */
+    filter: drop-shadow(0 0 10px rgba(134, 252, 47, 0.1));
+}
+
+.nav-content .logo-icon {
     height: 40px;
-    background-color: var(--primary);
-    color: var(--white);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Fraunces', serif;
-    font-weight: 700;
-    font-size: 1.2rem;
 }
 
 .logo-text {
