@@ -1,5 +1,7 @@
 <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Elegant minimalist leaf/sprout -->
-  <path d="M50 85C50 85 85 60 85 35C85 10 70 15 50 15C30 15 15 10 15 35C15 60 50 85 50 85Z" stroke="#86FC2F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M50 85V15" stroke="#86FC2F" stroke-width="4" stroke-linecap="round"/>
+  <!-- Elegant minimalist Graduation Cap (Mortarboard) -->
+  <path d="M50 20L15 40L50 60L85 40L50 20Z" stroke="#86FC2F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M25 45V65C25 65 35 75 50 75C65 75 75 65 75 65V45" stroke="#86FC2F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M85 40V60" stroke="#86FC2F" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="85" cy="65" r="4" fill="#86FC2F"/>
 </svg>
