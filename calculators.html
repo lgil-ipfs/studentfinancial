@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Calculators | StudentFinancial.ca</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .page-header {
+            padding: 80px 0 60px;
+            background: linear-gradient(180deg, var(--bg) 0%, #fff 100%);
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .calc-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .calc-card h3 {
+            color: var(--primary);
+            margin-bottom: 24px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--secondary);
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        .calc-inputs {
+            margin-bottom: 32px;
+        }
+
+        .calc-results {
+            padding: 24px;
+            background: var(--bg);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .result-value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .calc-explanation {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        details {
+            margin-top: 16px;
+            cursor: pointer;
+        }
+
+        details summary {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        canvas {
+            max-width: 100%;
+            margin-top: 24px;
+        }
+
+        @media (max-width: 992px) {
+            .calc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <div class="logo-monogram">SF</div>
+                <div class="logo-text">studentfinancial.ca</div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="debt-repayment.html">Debt Repayment</a>
+                <a href="calculators.html">Calculators</a>
+                <a href="quizzes.html">Quizzes</a>
+                <a href="budgeting-templates.html">Templates</a>
+                <a href="articles.html">Articles</a>
+            </div>
+            <a href="index.html#booking" class="btn btn-secondary">Book Free Session</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Run the numbers. Know where you stand.</h1>
+            <p>Our calculators are built for Canadian students. No signup required.</p>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="calc-grid">
+                
+                <!-- 1. Student Loan Repayment -->
+                <div class="calc-card" id="loan-repayment">
+                    <h3>Student Loan Repayment</h3>
+                    <div class="calc-inputs">
+                        <div class="form-group">
+                            <label>Total Loan Amount ($)</label>
+                            <input type="number" id="loan-amount" value="30000">
+                        </div>
+                        <div class="form-group">
+                            <label>Interest Rate (%)</label>
+                            <input type="number" id="loan-rate" value="5" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label>Repayment Period (Months)</label>
+                            <input type="number" id="loan-term" value="120">
+                        </div>
+                    </div>
+                    <div class="calc-results">
+                        <div class="result-item">
+                            <span>Monthly Payment:</span>
+                            <span class="result-value" id="loan-payment-res">$0.00</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Total Interest:</span>
+                            <span class="result-value" id="loan-interest-res">$0.00</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Total Cost:</span>
+                            <span class="result-value" id="loan-total-res">$0.00</span>
+                        </div>
+                    </div>
+                    <details>
+                        <summary>What does this mean?</summary>
+                        <p>This shows how much you'll pay each month to clear your debt in the given timeframe. Remember, federal Canada Student Loans are currently interest-free, so set the rate to 0% for those!</p>
+                    </details>
+                </div>
+
+                <!-- 3. Budget Surplus/Deficit -->
+                <div class="calc-card" id="budget-calc">
+                    <h3>Monthly Budget Checker</h3>
+                    <div class="calc-inputs">
+                        <div class="form-group">
+                            <label>Total Monthly Income ($)</label>
+                            <input type="number" id="budget-income" value="2000">
+                        </div>
+                        <div class="form-group">
+                            <label>Total Monthly Expenses ($)</label>
+                            <input type="number" id="budget-expenses" value="1800">
+                        </div>
+                    </div>
+                    <div class="calc-results">
+                        <div class="result-item">
+                            <span>Status:</span>
+                            <span class="result-value" id="budget-status">Surplus</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Remaining:</span>
+                            <span class="result-value" id="budget-diff">$200.00</span>
+                        </div>
+                    </div>
+                    <canvas id="budgetChart" height="200"></canvas>
+                    <details>
+                        <summary>What does this mean?</summary>
+                        <p>A surplus (teal) means you're living within your means. A deficit (coral) means you're spending more than you earn, which leads to debt.</p>
+                    </details>
+                </div>
+
+                <!-- 4. Net Worth Tracker -->
+                <div class="calc-card" id="networth-calc">
+                    <h3>Net Worth Tracker</h3>
+                    <div class="calc-inputs">
+                        <div class="form-group">
+                            <label>Total Assets (Savings, Car, etc) ($)</label>
+                            <input type="number" id="assets-val" value="5000">
+                        </div>
+                        <div class="form-group">
+                            <label>Total Liabilities (Debt, Loans) ($)</label>
+                            <input type="number" id="liabilities-val" value="30000">
+                        </div>
+                    </div>
+                    <div class="calc-results">
+                        <div class="result-item">
+                            <span>Your Net Worth:</span>
+                            <span class="result-value" id="networth-res">-$25,000.00</span>
+                        </div>
+                    </div>
+                    <canvas id="nwChart" height="200"></canvas>
+                    <details>
+                        <summary>What does this mean?</summary>
+                        <p>Net worth is Assets minus Liabilities. It's common for students to have a negative net worth—don't panic! The goal is to see this number grow over time.</p>
+                    </details>
+                </div>
+
+                <!-- 5. Credit Card Danger -->
+                <div class="calc-card" id="cc-danger">
+                    <h3>Credit Card Minimum Payment Danger</h3>
+                    <div class="calc-inputs">
+                        <div class="form-group">
+                            <label>Credit Card Balance ($)</label>
+                            <input type="number" id="cc-balance" value="2000">
+                        </div>
+                        <div class="form-group">
+                            <label>Interest Rate (%)</label>
+                            <input type="number" id="cc-rate" value="19.9">
+                        </div>
+                    </div>
+                    <div class="calc-results">
+                        <p style="margin-bottom: 12px; font-weight: 600;">If you only pay the minimum (approx 3%):</p>
+                        <div class="result-item">
+                            <span>Years to pay off:</span>
+                            <span class="result-value" id="cc-years">12.5 Years</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Total Interest Cost:</span>
+                            <span class="result-value" id="cc-interest" style="color: var(--accent);">$2,450.00</span>
+                        </div>
+                    </div>
+                    <details>
+                        <summary>Why is this dangerous?</summary>
+                        <p>Credit card interest is extremely high. By only paying the minimum, you mostly just pay the interest, and the principal barely moves. Always aim to pay in full!</p>
+                    </details>
+                </div>
+
+                <!-- 6. TFSA Growth -->
+                <div class="calc-card" id="tfsa-calc">
+                    <h3>TFSA Growth Projector</h3>
+                    <div class="calc-inputs">
+                        <div class="form-group">
+                            <label>Monthly Contribution ($)</label>
+                            <input type="number" id="tfsa-monthly" value="200">
+                        </div>
+                        <div class="form-group">
+                            <label>Expected Return (%)</label>
+                            <input type="number" id="tfsa-return" value="6">
+                        </div>
+                        <div class="form-group">
+                            <label>Years to Save</label>
+                            <input type="number" id="tfsa-years" value="10">
+                        </div>
+                    </div>
+                    <div class="calc-results">
+                        <div class="result-item">
+                            <span>Projected Balance:</span>
+                            <span class="result-value" id="tfsa-res">$32,775.00</span>
+                        </div>
+                    </div>
+                    <canvas id="tfsaChart" height="200"></canvas>
+                    <details>
+                        <summary>What does this mean?</summary>
+                        <p>This shows the power of compound interest in a Tax-Free Savings Account. Every dollar you earn from growth is yours to keep, tax-free!</p>
+                    </details>
+                </div>
+
+                <!-- 2. Avalanche vs Snowball (Simplified for basic JS) -->
+                <div class="calc-card" id="debt-compare">
+                    <h3>Avalanche vs. Snowball Comparison</h3>
+                    <div class="calc-inputs">
+                        <p style="font-size: 0.9rem; margin-bottom: 16px;">Comparing a $5,000 CC debt (19.9%) and $15,000 Loan (6%).</p>
+                        <div class="form-group">
+                            <label>Extra Monthly Payment ($)</label>
+                            <input type="number" id="extra-pay" value="200">
+                        </div>
+                    </div>
+                    <div class="calc-results">
+                        <div class="result-item">
+                            <span>Avalanche Savings:</span>
+                            <span class="result-value" id="av-save" style="color: var(--primary);">$1,420.00</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Snowball Speed:</span>
+                            <span class="result-value" id="sb-speed">1 month faster win</span>
+                        </div>
+                    </div>
+                    <details>
+                        <summary>Which one is better?</summary>
+                        <p>Avalanche always saves more money. Snowball provides faster small wins. For most students, Avalanche is recommended to minimize total cost.</p>
+                    </details>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo-area">
+                    <a href="index.html" class="logo">
+                        <div class="logo-monogram">SF</div>
+                        <div class="logo-text">studentfinancial.ca</div>
+                    </a>
+                    <p>Your Financial Fresh Start. Powered by Iberian Pacific Financial Services Inc.</p>
+                </div>
+                <!-- Links same as previous -->
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="debt-repayment.html">Debt Repayment</a></li>
+                        <li><a href="calculators.html">Calculators</a></li>
+                        <li><a href="quizzes.html">Quizzes</a></li>
+                        <li><a href="budgeting-templates.html">Templates</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#booking">Book a Session</a></li>
+                        <li><a href="mailto:support@studentfinancial.ca">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <p style="margin-bottom: 8px;"><a href="mailto:support@studentfinancial.ca">support@studentfinancial.ca</a></p>
+                    <p><a href="tel:604-916-8819">604-916-8819</a></p>
+                </div>
+            </div>
+            <div class="footer-disclaimer">
+                The content on studentfinancial.ca is provided for educational and informational purposes only and does not constitute financial, investment, tax, or legal advice. Always consult a qualified financial professional before making any financial decisions. Iberian Pacific Financial Services Inc. is registered in British Columbia and Ontario. Use of this website does not create an advisor-client relationship. <br><br>
+                <a href="https://iberianpacific.ca" style="color: var(--primary); font-weight: 600;">Learn more about personalized wealth management at iberianpacific.ca →</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 StudentFinancial.ca | Powered by Iberian Pacific Financial Services Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/calculators.js"></script>
+</body>
+</html>

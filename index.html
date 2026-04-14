@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentFinancial.ca | Your Financial Fresh Start</title>
+    <meta name="description" content="Free financial education and counselling for Canadian students. Powered by Iberian Pacific Financial Services Inc.">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .hero {
+            position: relative;
+            padding: 120px 0 80px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .trust-line {
+            font-size: 0.9rem;
+            color: var(--muted);
+            border-left: 2px solid var(--secondary);
+            padding-left: 16px;
+        }
+
+        /* Why We Exist */
+        .why-exist {
+            background: var(--white);
+        }
+
+        .section-header {
+            max-width: 700px;
+            margin-bottom: 64px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .icon-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .icon-card {
+            padding: 40px;
+            background: var(--bg);
+            border-radius: var(--radius);
+        }
+
+        .icon-card h3 {
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        /* Quick Nav Grid */
+        .quick-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .nav-card {
+            padding: 48px 32px;
+            border-radius: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            color: var(--white);
+        }
+
+        .nav-card h3 {
+            font-size: 1.5rem;
+        }
+
+        .nav-card.teal { background-color: var(--primary); }
+        .nav-card.amber { background-color: var(--secondary); color: var(--text); }
+        .nav-card.coral { background-color: var(--accent); }
+
+        .nav-card:hover { transform: scale(1.02); }
+
+        /* Booking Section */
+        .booking-section {
+            background: var(--white);
+        }
+
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .booking-form-card {
+            background: var(--bg);
+            padding: 48px;
+            border-radius: var(--radius);
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3.5rem; }
+            .icon-cards, .quick-nav-grid, .booking-container {
+                grid-template-columns: 1fr;
+            }
+            .hero-btns { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="/" class="logo">
+                <div class="logo-monogram">SF</div>
+                <div class="logo-text">studentfinancial.ca</div>
+            </a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="debt-repayment.html">Debt Repayment</a>
+                <a href="calculators.html">Calculators</a>
+                <a href="quizzes.html">Quizzes</a>
+                <a href="budgeting-templates.html">Templates</a>
+                <a href="articles.html">Articles</a>
+            </div>
+            <a href="#booking" class="btn btn-secondary" style="font-weight: 700;">Book Free Session</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Your Financial Fresh Start.</h1>
+                <p>Free financial education and one-on-one counselling for Canadian students. No fees. No judgment. Just support.</p>
+                <div class="hero-btns">
+                    <a href="#booking" class="btn btn-primary">Book a Free Session</a>
+                    <a href="articles.html" class="btn btn-outline">Start Learning</a>
+                </div>
+                <div class="trust-line">
+                    Powered by Iberian Pacific Financial Services Inc. | Proudly Canadian 🇨🇦
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="trust-bar">
+        <div class="container trust-bar-content">
+            <span>Built for Canadians</span>
+            <span>100% Free</span>
+            <span>No Sales Pitch</span>
+            <span>Your Privacy Matters</span>
+        </div>
+    </section>
+
+    <section class="why-exist section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Every student deserves a fair shot.</h2>
+                <p>Money stress is one of the biggest barriers to student success. We built StudentFinancial.ca because financial education shouldn't cost anything — and getting help shouldn't feel embarrassing.</p>
+            </div>
+            <div class="icon-cards">
+                <div class="icon-card">
+                    <h3>Learn at your own pace</h3>
+                    <p>Access our library of articles, guides, and templates anytime, anywhere.</p>
+                </div>
+                <div class="icon-card">
+                    <h3>Free one-on-one counselling</h3>
+                    <p>Talk to a registered advisor about your specific situation at no cost.</p>
+                </div>
+                <div class="icon-card">
+                    <h3>Canadian-focused resources</h3>
+                    <p>Everything we provide is tailored specifically for the Canadian financial landscape.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quick-nav section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>What You'll Find Here</h2>
+            </div>
+            <div class="quick-nav-grid">
+                <a href="debt-repayment.html" class="nav-card teal">
+                    <h3>Debt Repayment Guide</h3>
+                    <span>Get a plan →</span>
+                </a>
+                <a href="calculators.html" class="nav-card amber">
+                    <h3>Financial Calculators</h3>
+                    <span>Run the numbers →</span>
+                </a>
+                <a href="quizzes.html" class="nav-card coral">
+                    <h3>Quizzes & Knowledge Checks</h3>
+                    <span>Test yourself →</span>
+                </a>
+                <a href="budgeting-templates.html" class="nav-card teal">
+                    <h3>Budgeting Templates</h3>
+                    <span>Start tracking →</span>
+                </a>
+                <a href="articles.html" class="nav-card amber">
+                    <h3>Articles & Explainers</h3>
+                    <span>Learn more →</span>
+                </a>
+                <a href="#booking" class="nav-card coral">
+                    <h3 style="font-weight: 800;">Book a Counselling Session</h3>
+                    <span>Talk to us →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="booking-section section-padding">
+        <div class="container">
+            <div class="booking-container">
+                <div class="booking-text">
+                    <h2>Talk to someone who gets it.</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 24px;">Our registered advisors at Iberian Pacific Financial Services are available for free 30-minute financial wellness sessions for students. No product pitches. No pressure. Just guidance.</p>
+                    <div style="font-weight: 600; color: var(--primary);">
+                        <p>Or reach us directly:</p>
+                        <p><a href="mailto:support@studentfinancial.ca">support@studentfinancial.ca</a></p>
+                        <p>604-916-8819</p>
+                    </div>
+                </div>
+                <div class="booking-form-card">
+                    <form>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" placeholder="Alex" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" placeholder="Smith" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="alex@gmail.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Province</label>
+                            <select required>
+                                <option value="">Select Province</option>
+                                <option value="BC">British Columbia</option>
+                                <option value="ON">Ontario</option>
+                                <option value="AB">Alberta</option>
+                                <option value="SK">Saskatchewan</option>
+                                <option value="MB">Manitoba</option>
+                                <option value="QC">Quebec</option>
+                                <option value="NS">Nova Scotia</option>
+                                <option value="NB">New Brunswick</option>
+                                <option value="NL">Newfoundland & Labrador</option>
+                                <option value="PE">Prince Edward Island</option>
+                                <option value="YT">Yukon</option>
+                                <option value="NT">Northwest Territories</option>
+                                <option value="NU">Nunavut</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Topic of Interest</label>
+                            <select required>
+                                <option value="">Select Topic</option>
+                                <option value="Loan">Student Loan Repayment</option>
+                                <option value="Budgeting">Budgeting Basics</option>
+                                <option value="Credit">Building Credit</option>
+                                <option value="Saving">Saving & Investing</option>
+                                <option value="Wellness">General Financial Wellness</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Contact Method</label>
+                            <div style="display: flex; gap: 24px; padding-top: 8px;">
+                                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                    <input type="radio" name="contact" value="email" style="width: auto;" checked> Email
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                    <input type="radio" name="contact" value="phone" style="width: auto;"> Phone
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Request My Free Session</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo-area">
+                    <a href="/" class="logo">
+                        <div class="logo-monogram">SF</div>
+                        <div class="logo-text">studentfinancial.ca</div>
+                    </a>
+                    <p>Your Financial Fresh Start. Powered by Iberian Pacific Financial Services Inc.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="debt-repayment.html">Debt Repayment</a></li>
+                        <li><a href="calculators.html">Calculators</a></li>
+                        <li><a href="quizzes.html">Quizzes</a></li>
+                        <li><a href="budgeting-templates.html">Templates</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#booking">Book a Session</a></li>
+                        <li><a href="mailto:support@studentfinancial.ca">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <p style="margin-bottom: 8px;"><a href="mailto:support@studentfinancial.ca">support@studentfinancial.ca</a></p>
+                    <p><a href="tel:604-916-8819">604-916-8819</a></p>
+                </div>
+            </div>
+
+            <div class="footer-disclaimer">
+                The content on studentfinancial.ca is provided for educational and informational purposes only and does not constitute financial, investment, tax, or legal advice. Always consult a qualified financial professional before making any financial decisions. Iberian Pacific Financial Services Inc. is registered in British Columbia and Ontario. Use of this website does not create an advisor-client relationship. <br><br>
+                <a href="https://iberianpacific.ca" style="color: var(--primary); font-weight: 600;">Learn more about personalized wealth management at iberianpacific.ca →</a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 StudentFinancial.ca | Powered by Iberian Pacific Financial Services Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

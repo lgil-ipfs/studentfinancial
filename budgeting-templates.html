@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budgeting Templates | StudentFinancial.ca</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-header {
+            padding: 80px 0 60px;
+            background: linear-gradient(180deg, var(--bg) 0%, #fff 100%);
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .template-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            border-top: 5px solid var(--secondary);
+        }
+
+        .template-card h3 {
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+        }
+
+        .template-card p {
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .copy-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .google-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .note-box {
+            background: rgba(26, 107, 90, 0.05);
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 40px;
+            border-left: 4px solid var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .templates-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <div class="logo-monogram">SF</div>
+                <div class="logo-text">studentfinancial.ca</div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="debt-repayment.html">Debt Repayment</a>
+                <a href="calculators.html">Calculators</a>
+                <a href="quizzes.html">Quizzes</a>
+                <a href="budgeting-templates.html">Templates</a>
+                <a href="articles.html">Articles</a>
+            </div>
+            <a href="index.html#booking" class="btn btn-secondary">Book Free Session</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Your money. Your plan. Your Google Sheets.</h1>
+            <p>Free, pre-built budgeting templates you can copy to your own Google account in one click. No software to install. No account needed here.</p>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <div class="container">
+            
+            <div class="templates-grid">
+                <!-- 1 -->
+                <div class="template-card">
+                    <h3>Monthly Student Budget</h3>
+                    <p>Track income, fixed expenses, variable expenses, and see your monthly surplus or deficit at a glance. Colour-coded and beginner-friendly.</p>
+                    <a href="https://docs.google.com/spreadsheets/d/1B-c_X_mJvCByR3_yC3U8y3S9H8Gv5w6e_O4A_E_x_x/copy" class="copy-btn" target="_blank">
+                        <span>Copy to Google Sheets</span>
+                    </a>
+                </div>
+
+                <!-- 2 -->
+                <div class="template-card">
+                    <h3>Weekly Cash Flow Tracker</h3>
+                    <p>See exactly when money comes in and goes out. Avoid overdrafts and late fees by knowing your cash position week by week.</p>
+                    <a href="https://docs.google.com/spreadsheets/d/1B-c_X_mJvCByR3_yC3U8y3S9H8Gv5w6e_O4A_E_x_x/copy" class="copy-btn" target="_blank">
+                        <span>Copy to Google Sheets</span>
+                    </a>
+                </div>
+
+                <!-- 3 -->
+                <div class="template-card">
+                    <h3>Student Net Worth Tracker</h3>
+                    <p>A simple snapshot of what you own vs. what you owe. Updated monthly, it shows your financial progress over time.</p>
+                    <a href="https://docs.google.com/spreadsheets/d/1B-c_X_mJvCByR3_yC3U8y3S9H8Gv5w6e_O4A_E_x_x/copy" class="copy-btn" target="_blank">
+                        <span>Copy to Google Sheets</span>
+                    </a>
+                </div>
+
+                <!-- 4 -->
+                <div class="template-card">
+                    <h3>Debt Repayment Planner</h3>
+                    <p>The sheet automatically calculates your payoff timeline using both the avalanche and snowball methods based on your extra monthly payments.</p>
+                    <a href="https://docs.google.com/spreadsheets/d/1B-c_X_mJvCByR3_yC3U8y3S9H8Gv5w6e_O4A_E_x_x/copy" class="copy-btn" target="_blank">
+                        <span>Copy to Google Sheets</span>
+                    </a>
+                </div>
+
+                <!-- 5 -->
+                <div class="template-card">
+                    <h3>TFSA/RRSP Contribution Tracker</h3>
+                    <p>Track your annual contribution room and contributions for both registered accounts side by side to ensure you never over-contribute.</p>
+                    <a href="https://docs.google.com/spreadsheets/d/1B-c_X_mJvCByR3_yC3U8y3S9H8Gv5w6e_O4A_E_x_x/copy" class="copy-btn" target="_blank">
+                        <span>Copy to Google Sheets</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Note:</strong> All templates are view-only initially. Clicking "Copy to Google Sheets" will prompt you to save your own editable version in your Private Google Drive. <strong>No data is shared with StudentFinancial.ca or Iberian Pacific.</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo-area">
+                    <a href="index.html" class="logo">
+                        <div class="logo-monogram">SF</div>
+                        <div class="logo-text">studentfinancial.ca</div>
+                    </a>
+                    <p>Your Financial Fresh Start. Powered by Iberian Pacific Financial Services Inc.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="debt-repayment.html">Debt Repayment</a></li>
+                        <li><a href="calculators.html">Calculators</a></li>
+                        <li><a href="quizzes.html">Quizzes</a></li>
+                        <li><a href="budgeting-templates.html">Templates</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#booking">Book a Session</a></li>
+                        <li><a href="mailto:support@studentfinancial.ca">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <p style="margin-bottom: 8px;"><a href="mailto:support@studentfinancial.ca">support@studentfinancial.ca</a></p>
+                    <p><a href="tel:604-916-8819">604-916-8819</a></p>
+                </div>
+            </div>
+            <div class="footer-disclaimer">
+                The content on studentfinancial.ca is provided for educational and informational purposes only and does not constitute financial, investment, tax, or legal advice. Always consult a qualified financial professional before making any financial decisions. Iberian Pacific Financial Services Inc. is registered in British Columbia and Ontario. Use of this website does not create an advisor-client relationship. <br><br>
+                <a href="https://iberianpacific.ca" style="color: var(--primary); font-weight: 600;">Learn more about personalized wealth management at iberianpacific.ca →</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 StudentFinancial.ca | Powered by Iberian Pacific Financial Services Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

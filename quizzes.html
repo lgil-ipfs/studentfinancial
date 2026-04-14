@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Quizzes | StudentFinancial.ca</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-header {
+            padding: 80px 0 60px;
+            background: linear-gradient(180deg, var(--bg) 0%, #fff 100%);
+        }
+
+        .quiz-selection {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .quiz-card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 6px solid var(--primary);
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .quiz-card h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        /* Quiz UI */
+        #quiz-container {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 48px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-family: 'Fraunces', serif;
+            margin-bottom: 32px;
+            color: var(--primary);
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .option-btn {
+            padding: 20px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            text-align: left;
+            background: none;
+            font-size: 1rem;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary);
+            background: rgba(26, 107, 90, 0.05);
+        }
+
+        .option-btn.correct {
+            background-color: rgba(26, 107, 90, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .option-btn.incorrect {
+            background-color: rgba(232, 97, 74, 0.1);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .feedback {
+            margin-top: 24px;
+            padding: 20px;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #e6f4f1;
+            color: var(--primary);
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background: #fdf2f0;
+            color: var(--accent);
+            display: block;
+        }
+
+        .quiz-controls {
+            margin-top: 32px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .result-screen {
+            text-align: center;
+        }
+
+        .result-score {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 24px 0;
+        }
+
+        @media (max-width: 768px) {
+            .quiz-selection { grid-template-columns: 1fr; }
+            .question-text { font-size: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <div class="logo-monogram">SF</div>
+                <div class="logo-text">studentfinancial.ca</div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="debt-repayment.html">Debt Repayment</a>
+                <a href="calculators.html">Calculators</a>
+                <a href="quizzes.html">Quizzes</a>
+                <a href="budgeting-templates.html">Templates</a>
+                <a href="articles.html">Articles</a>
+            </div>
+            <a href="index.html#booking" class="btn btn-secondary">Book Free Session</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>How money-smart are you?</h1>
+            <p>Test your financial knowledge — no grades, no pressure. Just learning.</p>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <div class="container">
+            
+            <div id="selection-screen">
+                <div class="quiz-selection">
+                    <div class="quiz-card" onclick="startQuiz(0)">
+                        <h3>Student Loan Basics</h3>
+                        <p>How well do you know the NSLSC and repayment rules?</p>
+                    </div>
+                    <div class="quiz-card" onclick="startQuiz(1)">
+                        <h3>Budgeting Fundamentals</h3>
+                        <p>Track your cash flow like a pro.</p>
+                    </div>
+                    <div class="quiz-card" onclick="startQuiz(2)">
+                        <h3>Credit & Debt</h3>
+                        <p>Understand your score and how debt works in Canada.</p>
+                    </div>
+                    <div class="quiz-card" onclick="startQuiz(3)">
+                        <h3>Saving & Investing 101</h3>
+                        <p>TFSAs, RRSPs, and the power of compounding.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="quiz-ui">
+                <div id="quiz-container">
+                    <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+                    <div id="question-area">
+                        <!-- Question goes here -->
+                    </div>
+                    <div id="feedback-area" class="feedback">
+                        <!-- Feedback goes here -->
+                    </div>
+                    <div class="quiz-controls">
+                        <button id="next-btn" class="btn btn-primary" style="display: none;" onclick="nextQuestion()">Next Question →</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo-area">
+                    <a href="index.html" class="logo">
+                        <div class="logo-monogram">SF</div>
+                        <div class="logo-text">studentfinancial.ca</div>
+                    </a>
+                    <p>Your Financial Fresh Start. Powered by Iberian Pacific Financial Services Inc.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="debt-repayment.html">Debt Repayment</a></li>
+                        <li><a href="calculators.html">Calculators</a></li>
+                        <li><a href="quizzes.html">Quizzes</a></li>
+                        <li><a href="budgeting-templates.html">Templates</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#booking">Book a Session</a></li>
+                        <li><a href="mailto:support@studentfinancial.ca">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <p style="margin-bottom: 8px;"><a href="mailto:support@studentfinancial.ca">support@studentfinancial.ca</a></p>
+                    <p><a href="tel:604-916-8819">604-916-8819</a></p>
+                </div>
+            </div>
+            <div class="footer-disclaimer">
+                The content on studentfinancial.ca is provided for educational and informational purposes only and does not constitute financial, investment, tax, or legal advice. Always consult a qualified financial professional before making any financial decisions. Iberian Pacific Financial Services Inc. is registered in British Columbia and Ontario. Use of this website does not create an advisor-client relationship. <br><br>
+                <a href="https://iberianpacific.ca" style="color: var(--primary); font-weight: 600;">Learn more about personalized wealth management at iberianpacific.ca →</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 StudentFinancial.ca | Powered by Iberian Pacific Financial Services Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/quizzes.js"></script>
+</body>
+</html>

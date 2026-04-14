@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debt Repayment Guide | StudentFinancial.ca</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-header {
+            padding: 80px 0 60px;
+            background: linear-gradient(180deg, var(--bg) 0%, #fff 100%);
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+        }
+
+        /* Accordion */
+        .accordion-container {
+            max-width: 900px;
+            margin-top: 40px;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid rgba(26, 107, 90, 0.1);
+            background: var(--white);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .accordion-header {
+            padding: 24px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .accordion-header:hover {
+            background-color: rgba(26, 107, 90, 0.05);
+        }
+
+        .accordion-header.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .accordion-icon {
+            transition: var(--transition);
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            padding: 0 32px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .accordion-content.active {
+            padding: 32px;
+            max-height: 1000px;
+        }
+
+        .info-block h4 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .info-block ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-block li {
+            margin-bottom: 8px;
+        }
+
+        .loan-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        /* Strategies */
+        .strategies-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .strategy-card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: var(--radius);
+            border-bottom: 4px solid var(--primary);
+        }
+
+        .strategy-card h3 {
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .callout-box {
+            background: var(--primary);
+            color: var(--white);
+            padding: 48px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .callout-box h2 {
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 992px) {
+            .strategies-grid, .callout-box {
+                grid-template-columns: 1fr;
+                flex-direction: column;
+                text-align: center;
+            }
+            .page-header h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <div class="logo-monogram">SF</div>
+                <div class="logo-text">studentfinancial.ca</div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="debt-repayment.html">Debt Repayment</a>
+                <a href="calculators.html">Calculators</a>
+                <a href="quizzes.html">Quizzes</a>
+                <a href="budgeting-templates.html">Templates</a>
+                <a href="articles.html">Articles</a>
+            </div>
+            <a href="index.html#booking" class="btn btn-secondary">Book Free Session</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Let's get you out of debt — the smart way.</h1>
+            <p>Not all student debt is the same. Where your loan came from changes how you repay it, what protections you have, and what relief options are available. Use the resource below to find information specific to your loan type.</p>
+        </div>
+    </header>
+
+    <section class="section-padding" style="background: #fff;">
+        <div class="container">
+            <h2 style="color: var(--primary); margin-bottom: 16px;">Where is your loan from?</h2>
+            
+            <div class="accordion-container">
+                <!-- Federal -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        FEDERAL LOANS: Canada Student Loan (NSLSC) & Apprentice Loans
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="info-block">
+                            <h4>Canada Student Loan (NSLSC)</h4>
+                            <ul>
+                                <li><strong>Repayment Assistance Plan (RAP):</strong> If you're struggling to pay, you can apply for RAP. You may qualify for $0 payments if your income is below a certain threshold.</li>
+                                <li><strong>Interest Rates:</strong> As of 2023, interest is permanently eliminated on Canada Student Loans.</li>
+                                <li><strong>Manage Online:</strong> Access your account at <a href="https://www.csnp-nslsc.canada.ca/" target="_blank">nslsc.canada.ca</a></li>
+                                <li><strong>Loan Forgiveness:</strong> Available for family doctors and nurses working in underserved rural communities.</li>
+                            </ul>
+                            <a href="https://www.canada.ca/en/services/benefits/education/student-aid/grants-loans/repay.html" class="loan-link" target="_blank">Official Canada Student Loans Page →</a>
+                            
+                            <hr style="margin: 32px 0; border: none; border-top: 1px solid #eee;">
+                            
+                            <h4>Canada Apprentice Loan</h4>
+                            <p>For apprentices in Red Seal trades. Loans are interest-free during training and repayable after training ends.</p>
+                            <a href="https://www.canada.ca/en/employment-social-development/services/apprentices/loans.html" class="loan-link" target="_blank">Apprentice Loan Info →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BC -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        PROVINCIAL: British Columbia (StudentAid BC)
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="info-block">
+                            <h4>StudentAid BC</h4>
+                            <ul>
+                                <li><strong>BC Loan Forgiveness Program:</strong> For graduates in specific healthcare or social service professions.</li>
+                                <li><strong>BC Access Grant:</strong> Upfront, non-repayable funding for low- and middle-income students.</li>
+                                <li><strong>Repayment:</strong> Integrated with the NSLSC for easier management.</li>
+                            </ul>
+                            <a href="https://studentaidbc.ca/" class="loan-link" target="_blank">studentaidbc.ca →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ON -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        PROVINCIAL: Ontario (OSAP)
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="info-block">
+                            <h4>OSAP (Ontario Student Assistance Program)</h4>
+                            <ul>
+                                <li><strong>Ontario Repayment Assistance:</strong> Similar to federal RAP, helps manage payments based on income.</li>
+                                <li><strong>Ontario Student Opportunity Grant:</strong> Helps limit the amount of debt you have to repay each year.</li>
+                            </ul>
+                            <a href="https://www.ontario.ca/page/osap-ontario-student-assistance-program" class="loan-link" target="_blank">ontario.ca/osap →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AB -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        PROVINCIAL: Alberta (Alberta Student Aid)
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="info-block">
+                            <h4>Alberta Student Aid</h4>
+                            <a href="https://studentaid.alberta.ca/" class="loan-link" target="_blank">alberta.ca/student-aid →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SK -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        PROVINCIAL: Saskatchewan (Saskatchewan Student Aid)
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="info-block">
+                            <h4>Saskatchewan Student Aid</h4>
+                            <a href="https://www.saskatchewan.ca/residents/education-and-learning/scholarships-bursaries-grants/loans-and-grants" class="loan-link" target="_blank">saskatchewan.ca/student-aid →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MB -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        PROVINCIAL: Manitoba (Manitoba Student Aid)
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="info-block">
+                            <h4>Manitoba Student Aid</h4>
+                            <a href="https://www.edu.gov.mb.ca/msa/" class="loan-link" target="_blank">edu.gov.mb.ca/studentaid →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QC -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        PROVINCIAL: Quebec (Aide financière aux études)
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="info-block">
+                            <h4>AFE (Aide financière aux études)</h4>
+                            <p><strong>Note:</strong> Quebec has opted out of the federal system; loans are administered entirely provincially through AFE.</p>
+                            <a href="https://www.quebec.ca/education/aide-financiere-aux-etudes" class="loan-link" target="_blank">afe.gouv.qc.ca →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Atlantic -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        PROVINCIAL: Atlantic Canada (NS, NB, PE, NL)
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="info-block">
+                            <p><strong>Nova Scotia:</strong> <a href="https://novascotia.ca/studentassistance/" target="_blank">novascotia.ca/studentassistance</a></p>
+                            <p><strong>New Brunswick:</strong> <a href="https://www2.gnb.ca/content/gnb/en/departments/post-secondary_education_training_and_labour/StudentAid.html" target="_blank">studentaidnb.ca</a></p>
+                            <p><strong>Prince Edward Island:</strong> <a href="https://www.princeedwardisland.ca/en/topic/student-financial-assistance" target="_blank">princeedwardisland.ca/student-financial</a></p>
+                            <p><strong>Newfoundland & Labrador:</strong> <a href="https://www.gov.nl.ca/education/studentaid/" target="_blank">studentaid.gov.nl.ca</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Private -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        PRIVATE/INSTITUTIONAL LOANS
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="info-block">
+                            <h4>Bank Student Line of Credit</h4>
+                            <p>Unlike government loans, these are not protected by RAP and interest starts accumulating right away (though usually interest-only payments are allowed during school).</p>
+                            <ul>
+                                <li><strong>Tips:</strong> Negotiate with your bank, watch for prime rate changes, and consider consolidation if tracking multiple bank debts.</li>
+                            </ul>
+                            <h4>Family/Private Informal Loans</h4>
+                            <p>Personal loans from family or friends. Even if informal, it's best to get terms in writing to protect relationships.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: var(--bg);">
+        <div class="container">
+            <h2 style="color: var(--primary); text-align: center; margin-bottom: 48px;">Debt Repayment Strategies</h2>
+            <div class="strategies-grid">
+                <div class="strategy-card">
+                    <h3>1. Avalanche Method</h3>
+                    <p>Focus on paying off the loan with the <strong>highest interest rate</strong> first, while making minimum payments on others. This saves you the most money in the long run.</p>
+                </div>
+                <div class="strategy-card">
+                    <h3>2. Snowball Method</h3>
+                    <p>Pay off the <strong>smallest balance</strong> first to build psychological momentum. Once one is gone, roll that payment into the next smallest. Great for staying motivated.</p>
+                </div>
+                <div class="strategy-card">
+                    <h3>3. Income-Driven Repayment</h3>
+                    <p>Use government programs like RAP to adjust your payments based on what you actually earn, ensuring your basic needs are met first.</p>
+                </div>
+                <div class="strategy-card">
+                    <h3>4. Consolidation</h3>
+                    <p>Combining multiple high-interest debts into one lower-interest loan. This can simplify your life but be careful not to lose government protections if moving federal loans to a bank.</p>
+                </div>
+            </div>
+
+            <div class="callout-box">
+                <div>
+                    <h2>Not sure which strategy is right for you?</h2>
+                    <p>Book a free counselling session and we'll help you build a personalized debt repayment plan.</p>
+                </div>
+                <a href="index.html#booking" class="btn btn-secondary" style="white-space: nowrap;">Talk to an Advisor</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <!-- Footer content same as index.html -->
+            <div class="footer-grid">
+                <div class="footer-logo-area">
+                    <a href="index.html" class="logo">
+                        <div class="logo-monogram">SF</div>
+                        <div class="logo-text">studentfinancial.ca</div>
+                    </a>
+                    <p>Your Financial Fresh Start. Powered by Iberian Pacific Financial Services Inc.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="debt-repayment.html">Debt Repayment</a></li>
+                        <li><a href="calculators.html">Calculators</a></li>
+                        <li><a href="quizzes.html">Quizzes</a></li>
+                        <li><a href="budgeting-templates.html">Templates</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#booking">Book a Session</a></li>
+                        <li><a href="mailto:support@studentfinancial.ca">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <p style="margin-bottom: 8px;"><a href="mailto:support@studentfinancial.ca">support@studentfinancial.ca</a></p>
+                    <p><a href="tel:604-916-8819">604-916-8819</a></p>
+                </div>
+            </div>
+            <div class="footer-disclaimer">
+                The content on studentfinancial.ca is provided for educational and informational purposes only and does not constitute financial, investment, tax, or legal advice. Always consult a qualified financial professional before making any financial decisions. Iberian Pacific Financial Services Inc. is registered in British Columbia and Ontario. Use of this website does not create an advisor-client relationship. <br><br>
+                <a href="https://iberianpacific.ca" style="color: var(--primary); font-weight: 600;">Learn more about personalized wealth management at iberianpacific.ca →</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 StudentFinancial.ca | Powered by Iberian Pacific Financial Services Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const content = header.nextElementSibling;
+                const isActive = header.classList.contains('active');
+                
+                // Close all others
+                document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
+                document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
+                
+                if (!isActive) {
+                    header.classList.add('active');
+                    content.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Articles | StudentFinancial.ca</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-header {
+            padding: 80px 0 60px;
+            background: linear-gradient(180deg, var(--bg) 0%, #fff 100%);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 48px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .article-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .article-card:hover { transform: translateY(-5px); }
+
+        .article-content {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .article-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+        }
+
+        .article-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        .article-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .read-btn {
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 992px) {
+            .articles-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .articles-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <div class="logo-monogram">SF</div>
+                <div class="logo-text">studentfinancial.ca</div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="debt-repayment.html">Debt Repayment</a>
+                <a href="calculators.html">Calculators</a>
+                <a href="quizzes.html">Quizzes</a>
+                <a href="budgeting-templates.html">Templates</a>
+                <a href="articles.html">Articles</a>
+            </div>
+            <a href="index.html#booking" class="btn btn-secondary">Book Free Session</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Financial concepts, explained like a friend would.</h1>
+            <p>No textbooks. No jargon. Just clear answers to things that actually matter.</p>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <div class="container">
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Articles</button>
+                <button class="filter-btn" data-filter="debt">Debt</button>
+                <button class="filter-btn" data-filter="budgeting">Budgeting</button>
+                <button class="filter-btn" data-filter="credit">Credit</button>
+                <button class="filter-btn" data-filter="saving">Saving & Investing</button>
+                <button class="filter-btn" data-filter="wellness">Wellness</button>
+            </div>
+
+            <div class="articles-grid">
+                <!-- DEBT -->
+                <div class="article-card" data-category="debt">
+                    <div class="article-content">
+                        <span class="article-tag">Debt</span>
+                        <h3>What Exactly Is the Repayment Assistance Plan (RAP)?</h3>
+                        <p>Struggling with student loan payments? RAP might be your best friend. Here's how it works and how to apply.</p>
+                        <a href="#" class="read-btn">Read Article →</a>
+                    </div>
+                </div>
+
+                <div class="article-card" data-category="debt">
+                    <div class="article-content">
+                        <span class="article-tag">Debt</span>
+                        <h3>Student Loan vs. Student Line of Credit</h3>
+                        <p>One is from the government, one is from the bank. The differences are massive—make sure you know them.</p>
+                        <a href="#" class="read-btn">Read Article →</a>
+                    </div>
+                </div>
+
+                <!-- BUDGETING -->
+                <div class="article-card" data-category="budgeting">
+                    <div class="article-content">
+                        <span class="article-tag">Budgeting</span>
+                        <h3>The 50/30/20 Rule: Does It Work for Students?</h3>
+                        <p>A classic budgeting framework adapted for the student lifestyle (and student budgets).</p>
+                        <a href="#" class="read-btn">Read Article →</a>
+                    </div>
+                </div>
+
+                <div class="article-card" data-category="budgeting">
+                    <div class="article-content">
+                        <span class="article-tag">Budgeting</span>
+                        <h3>How to Build Your First Budget When You're Broke</h3>
+                        <p>Budgeting isn't just for rich people. In fact, it's more important when every dollar counts.</p>
+                        <a href="#" class="read-btn">Read Article →</a>
+                    </div>
+                </div>
+
+                <!-- CREDIT -->
+                <div class="article-card" data-category="credit">
+                    <div class="article-content">
+                        <span class="article-tag">Credit</span>
+                        <h3>How Credit Scores Actually Work in Canada</h3>
+                        <p>Demystifying Equifax and TransUnion. What's a good score, and why does it matter for your future?</p>
+                        <a href="#" class="read-btn">Read Article →</a>
+                    </div>
+                </div>
+
+                <div class="article-card" data-category="credit">
+                    <div class="article-content">
+                        <span class="article-tag">Credit</span>
+                        <h3>Using a Credit Card as a Student: The Right Way</h3>
+                        <p>Avoid the debt trap while building the credit history you'll need for your first apartment or mortgage.</p>
+                        <a href="#" class="read-btn">Read Article →</a>
+                    </div>
+                </div>
+
+                <!-- SAVING -->
+                <div class="article-card" data-category="saving">
+                    <div class="article-content">
+                        <span class="article-tag">Saving & Investing</span>
+                        <h3>TFSA vs. RRSP: Which One Should You Open First?</h3>
+                        <p>Comparing Canada's two most popular registered accounts. Spoiler: For most students, one is a clear winner.</p>
+                        <a href="#" class="read-btn">Read Article →</a>
+                    </div>
+                </div>
+
+                <div class="article-card" data-category="saving">
+                    <div class="article-content">
+                        <span class="article-tag">Saving & Investing</span>
+                        <h3>The Rule of 72: Estimating Growth</h3>
+                        <p>A simple mental math trick to figure out how long it will take to double your money.</p>
+                        <a href="#" class="read-btn">Read Article →</a>
+                    </div>
+                </div>
+
+                <!-- WELLNESS -->
+                <div class="article-card" data-category="wellness">
+                    <div class="article-content">
+                        <span class="article-tag">Wellness</span>
+                        <h3>Money Stress Is Real: How to Cope</h3>
+                        <p>Financial anxiety can affect your grades and your health. Let's talk about the emotional side of money.</p>
+                        <a href="#" class="read-btn">Read Article →</a>
+                    </div>
+                </div>
+
+                <div class="article-card" data-category="wellness">
+                    <div class="article-content">
+                        <span class="article-tag">Wellness</span>
+                        <h3>Financial Gaslighting: What to Ignore</h3>
+                        <p>When 'just don't buy avocado toast' is bad advice. Recognising systemic barriers vs. personal choices.</p>
+                        <a href="#" class="read-btn">Read Article →</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo-area">
+                    <a href="index.html" class="logo">
+                        <div class="logo-monogram">SF</div>
+                        <div class="logo-text">studentfinancial.ca</div>
+                    </a>
+                    <p>Your Financial Fresh Start. Powered by Iberian Pacific Financial Services Inc.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="debt-repayment.html">Debt Repayment</a></li>
+                        <li><a href="calculators.html">Calculators</a></li>
+                        <li><a href="quizzes.html">Quizzes</a></li>
+                        <li><a href="budgeting-templates.html">Templates</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#booking">Book a Session</a></li>
+                        <li><a href="mailto:support@studentfinancial.ca">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <p style="margin-bottom: 8px;"><a href="mailto:support@studentfinancial.ca">support@studentfinancial.ca</a></p>
+                    <p><a href="tel:604-916-8819">604-916-8819</a></p>
+                </div>
+            </div>
+            <div class="footer-disclaimer">
+                The content on studentfinancial.ca is provided for educational and informational purposes only and does not constitute financial, investment, tax, or legal advice. Always consult a qualified financial professional before making any financial decisions. Iberian Pacific Financial Services Inc. is registered in British Columbia and Ontario. Use of this website does not create an advisor-client relationship. <br><br>
+                <a href="https://iberianpacific.ca" style="color: var(--primary); font-weight: 600;">Learn more about personalized wealth management at iberianpacific.ca →</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 StudentFinancial.ca | Powered by Iberian Pacific Financial Services Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                // Filter cards
+                document.querySelectorAll('.article-card').forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
