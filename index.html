@@ -10,8 +10,12 @@
     <style>
         .hero {
             position: relative;
-            padding: 120px 0 80px;
+            padding: 180px 0 140px;
             overflow: hidden;
+            background: linear-gradient(rgba(26, 107, 90, 0.85), rgba(26, 107, 90, 0.85)), url('https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=2400');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
         }
 
         .hero-content {
@@ -23,13 +27,13 @@
         .hero h1 {
             font-size: 4.5rem;
             line-height: 1.1;
-            color: var(--primary);
+            color: var(--white);
             margin-bottom: 24px;
         }
 
         .hero p {
             font-size: 1.25rem;
-            color: var(--text);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 40px;
             max-width: 600px;
         }
@@ -40,11 +44,14 @@
             margin-bottom: 48px;
         }
 
-        .trust-line {
-            font-size: 0.9rem;
-            color: var(--muted);
-            border-left: 2px solid var(--secondary);
-            padding-left: 16px;
+        .hero .btn-outline {
+            border-color: var(--white);
+            color: var(--white);
+        }
+
+        .hero .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary);
         }
 
         /* Why We Exist */
@@ -162,8 +169,6 @@
     </nav>
 
     <header class="hero">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
         <div class="container">
             <div class="hero-content">
                 <h1>Your Financial Fresh Start.</h1>
