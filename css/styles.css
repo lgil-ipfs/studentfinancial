@@ -554,7 +554,64 @@ footer {
     .section-header-centered h2 {
         font-size: 2.2rem;
     }
-    .about-content h2 {
-        font-size: 2rem;
+
+/* Counselling Section */
+.counselling-banner {
+    background: var(--primary);
+    border-radius: 32px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    color: var(--white);
+    box-shadow: var(--shadow-hover);
+}
+
+.counselling-image {
+    height: 100%;
+}
+
+.counselling-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.counselling-content {
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.counselling-content .subheading {
+    color: var(--secondary);
+}
+
+.counselling-content h2 {
+    font-size: 3rem;
+    margin-bottom: 24px;
+    color: var(--white);
+}
+
+.counselling-content p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+@media (max-width: 992px) {
+    .counselling-banner {
+        grid-template-columns: 1fr;
+    }
+    .counselling-image {
+        height: 300px;
+    }
+    .counselling-content {
+        padding: 40px;
+        text-align: center;
+        align-items: center;
+    }
+    .counselling-content h2 {
+        font-size: 2.2rem;
     }
 }
