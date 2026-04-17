@@ -10,12 +10,24 @@
     <style>
         .hero {
             position: relative;
-            padding: 180px 0 140px;
+            padding: 140px 0 100px;
             overflow: hidden;
-            background: linear-gradient(rgba(26, 107, 90, 0.85), rgba(26, 107, 90, 0.85)), url('https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=2400');
+            background-color: var(--bg);
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(to right, var(--bg) 0%, rgba(250, 247, 242, 0) 40%, rgba(250, 247, 242, 0) 100%), 
+                        linear-gradient(to bottom, rgba(250, 247, 242, 0) 70%, var(--bg) 100%),
+                        url('https://images.unsplash.com/photo-1523240715632-6804550882a1?q=80&w=1200');
             background-size: cover;
             background-position: center;
-            color: var(--white);
+            opacity: 0.6;
+            z-index: 0;
         }
 
         .hero-content {
@@ -27,13 +39,13 @@
         .hero h1 {
             font-size: 4.5rem;
             line-height: 1.1;
-            color: var(--white);
+            color: var(--primary);
             margin-bottom: 24px;
         }
 
         .hero p {
             font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text);
             margin-bottom: 40px;
             max-width: 600px;
         }
@@ -44,14 +56,29 @@
             margin-bottom: 48px;
         }
 
-        .hero .btn-outline {
-            border-color: var(--white);
-            color: var(--white);
+        /* Blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.4;
         }
 
-        .hero .btn-outline:hover {
-            background-color: var(--white);
-            color: var(--primary);
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            top: -100px;
+            right: -100px;
+        }
+
+        .blob-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary);
+            bottom: -50px;
+            left: -50px;
         }
 
         /* Why We Exist */
@@ -169,6 +196,9 @@
     </nav>
 
     <header class="hero">
+        <div class="hero-bg-image"></div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
         <div class="container">
             <div class="hero-content">
                 <h1>Your Financial Fresh Start.</h1>
