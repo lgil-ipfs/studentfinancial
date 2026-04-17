@@ -517,7 +517,7 @@ footer {
     grid-row: span 2;
 }
 
-/* Brand Colors */
+/* Brand Colors for Bento */
 .card-primary {
     background: var(--primary);
     color: var(--white);
@@ -529,15 +529,20 @@ footer {
     color: var(--white) !important;
 }
 
-.card-secondary {
-    background: var(--secondary);
-    color: var(--primary);
+.card-light {
+    background: #f0f7f5; /* Very light brand tint */
+    border: 1px solid rgba(26, 107, 90, 0.05);
 }
 
-.card-secondary h3,
-.card-secondary p,
-.card-secondary .card-link {
+.card-light h3,
+.card-light p,
+.card-light .card-link {
     color: var(--primary) !important;
+}
+
+/* Base White Cards */
+.resource-card:not(.card-primary):not(.card-light) {
+    background: var(--white);
 }
 
 /* Image Backgrounds */
@@ -573,8 +578,8 @@ footer {
     background: linear-gradient(135deg, rgba(26, 107, 90, 0.9) 0%, rgba(26, 107, 90, 0.4) 100%);
 }
 
-.card-secondary::after {
-    background: linear-gradient(135deg, rgba(232, 160, 32, 0.95) 0%, rgba(232, 160, 32, 0.6) 100%);
+.card-light::after {
+    background: linear-gradient(135deg, rgba(240, 247, 245, 0.95) 0%, rgba(240, 247, 245, 0.6) 100%);
 }
 
 .resource-card:hover .card-image-bg {
