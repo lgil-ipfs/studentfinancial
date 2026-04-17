@@ -487,87 +487,130 @@ footer {
     font-weight: 600;
 }
 
-/* Resources Grid */
+/* Bento Resources Grid */
 .resources-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    grid-auto-rows: 300px;
+    gap: 24px;
 }
 
 .resource-card {
     background: var(--white);
-    border-radius: 24px;
+    border-radius: 32px;
     overflow: hidden;
+    position: relative;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    position: relative;
-    border: 1px solid rgba(26, 107, 90, 0.1);
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
-                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    padding: 40px;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
-.resource-card::before {
-    content: attr(data-index);
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 10;
-    font-family: 'Fraunces', serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--white);
+/* Bento Sizing */
+.card-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.card-tall {
+    grid-row: span 2;
+}
+
+/* Brand Colors */
+.card-primary {
     background: var(--primary);
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
+    color: var(--white);
 }
 
-.card-image {
-    height: 240px;
-    overflow: hidden;
+.card-primary h3, .card-primary .card-link {
+    color: var(--white) !important;
 }
 
-.card-image img {
+.card-secondary {
+    background: var(--secondary);
+    color: var(--primary);
+}
+
+/* Image Backgrounds */
+.card-image-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.15;
+    filter: grayscale(100%);
+    transition: all 0.6s ease;
+}
+
+.card-image-bg img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
 }
 
-.resource-card:hover .card-image img {
-    transform: scale(1.1);
+.resource-card:hover .card-image-bg {
+    opacity: 0.4;
+    filter: grayscale(0%);
+    transform: scale(1.05);
 }
 
 .card-content {
-    padding: 32px;
-    flex-grow: 1;
+    position: relative;
+    z-index: 2;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    padding: 0 !important;
 }
 
 .card-content h3 {
-    margin-bottom: 12px;
-    color: var(--primary);
-    font-size: 1.4rem;
+    font-size: 2rem;
+    margin-bottom: 16px;
+    line-height: 1.1;
+}
+
+.card-large h3 {
+    font-size: 3.5rem;
 }
 
 .card-content p {
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin-bottom: 24px;
-    flex-grow: 1;
+    font-size: 1.1rem;
+    max-width: 300px;
+    opacity: 0.8;
 }
 
 .card-link {
     font-weight: 700;
-    color: var(--secondary);
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-top: auto;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(26, 107, 90, 0.1);
+}
+
+@media (max-width: 992px) {
+    .resources-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+    .card-large, .card-tall {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+    .card-content h3 {
+        font-size: 1.8rem;
+    }
+    .card-large h3 {
+        font-size: 2.2rem;
+    }
 }
 
 @media (max-width: 992px) {
