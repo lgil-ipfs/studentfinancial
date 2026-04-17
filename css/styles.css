@@ -523,13 +523,21 @@ footer {
     color: var(--white);
 }
 
-.card-primary h3, .card-primary .card-link {
+.card-primary h3, 
+.card-primary p, 
+.card-primary .card-link {
     color: var(--white) !important;
 }
 
 .card-secondary {
     background: var(--secondary);
     color: var(--primary);
+}
+
+.card-secondary h3,
+.card-secondary p,
+.card-secondary .card-link {
+    color: var(--primary) !important;
 }
 
 /* Image Backgrounds */
@@ -540,7 +548,7 @@ footer {
     width: 100%;
     height: 100%;
     z-index: 1;
-    opacity: 0.15;
+    opacity: 0.1; /* Even more subtle for baseline readability */
     filter: grayscale(100%);
     transition: all 0.6s ease;
 }
@@ -551,15 +559,34 @@ footer {
     object-fit: cover;
 }
 
+/* Protective Overlay Gradient */
+.resource-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.5) 100%);
+    z-index: 2;
+    transition: opacity 0.5s ease;
+}
+
+.card-primary::after {
+    background: linear-gradient(135deg, rgba(26, 107, 90, 0.9) 0%, rgba(26, 107, 90, 0.4) 100%);
+}
+
+.card-secondary::after {
+    background: linear-gradient(135deg, rgba(232, 160, 32, 0.95) 0%, rgba(232, 160, 32, 0.6) 100%);
+}
+
 .resource-card:hover .card-image-bg {
-    opacity: 0.4;
+    opacity: 0.3;
     filter: grayscale(0%);
     transform: scale(1.05);
 }
 
+/* Content layer stays above overlay */
 .card-content {
     position: relative;
-    z-index: 2;
+    z-index: 10;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -568,9 +595,10 @@ footer {
 }
 
 .card-content h3 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 16px;
     line-height: 1.1;
+    color: var(--primary);
 }
 
 .card-large h3 {
@@ -578,9 +606,11 @@ footer {
 }
 
 .card-content p {
-    font-size: 1.1rem;
-    max-width: 300px;
-    opacity: 0.8;
+    font-size: 1.15rem;
+    font-weight: 500; /* Increased weight for readability */
+    max-width: 320px;
+    color: var(--text);
+    line-height: 1.5;
 }
 
 .card-link {
@@ -589,11 +619,12 @@ footer {
     align-items: center;
     gap: 8px;
     margin-top: auto;
+    color: var(--primary);
 }
 
 .resource-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 30px 60px rgba(26, 107, 90, 0.1);
+    box-shadow: 0 30px 60px rgba(26, 107, 90, 0.12);
 }
 
 @media (max-width: 992px) {
@@ -605,11 +636,8 @@ footer {
         grid-column: span 1;
         grid-row: span 1;
     }
-    .card-content h3 {
-        font-size: 1.8rem;
-    }
-    .card-large h3 {
-        font-size: 2.2rem;
+    .card-content {
+        gap: 24px;
     }
 }
 
