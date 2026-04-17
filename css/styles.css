@@ -496,7 +496,7 @@ footer {
 }
 
 .resource-card {
-    background: var(--white);
+    background: #f0f7f5;
     border-radius: 32px;
     overflow: hidden;
     position: relative;
@@ -515,34 +515,6 @@ footer {
 
 .card-tall {
     grid-row: span 2;
-}
-
-/* Brand Colors for Bento */
-.card-primary {
-    background: var(--primary);
-    color: var(--white);
-}
-
-.card-primary h3, 
-.card-primary p, 
-.card-primary .card-link {
-    color: var(--white) !important;
-}
-
-.card-light {
-    background: #f0f7f5; /* Very light brand tint */
-    border: 1px solid rgba(26, 107, 90, 0.05);
-}
-
-.card-light h3,
-.card-light p,
-.card-light .card-link {
-    color: var(--primary) !important;
-}
-
-/* Base White Cards */
-.resource-card:not(.card-primary):not(.card-light) {
-    background: var(--white);
 }
 
 /* Image Backgrounds */
@@ -569,18 +541,11 @@ footer {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.5) 100%);
+    background: linear-gradient(135deg, rgba(240, 247, 245, 0.95) 0%, rgba(240, 247, 245, 0.6) 100%);
     z-index: 2;
     transition: opacity 0.5s ease;
 }
 
-.card-primary::after {
-    background: linear-gradient(135deg, rgba(26, 107, 90, 0.9) 0%, rgba(26, 107, 90, 0.4) 100%);
-}
-
-.card-light::after {
-    background: linear-gradient(135deg, rgba(240, 247, 245, 0.95) 0%, rgba(240, 247, 245, 0.6) 100%);
-}
 
 .resource-card:hover .card-image-bg {
     opacity: 0.3;
