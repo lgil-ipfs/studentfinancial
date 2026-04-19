@@ -548,7 +548,7 @@ footer {
 
 
 .resource-card:hover .card-image-bg {
-    opacity: 0.15;
+    opacity: 0.05;
     filter: grayscale(0%);
     transform: scale(1.05);
 }
@@ -608,6 +608,12 @@ footer {
     }
     .card-content {
         gap: 24px;
+    }
+    .card-image-bg {
+        display: none;
+    }
+    .resource-card {
+        min-height: 250px;
     }
 }
 
