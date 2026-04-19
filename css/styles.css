@@ -548,7 +548,7 @@ footer {
 
 
 .resource-card:hover .card-image-bg {
-    opacity: 0.3;
+    opacity: 0.15;
     filter: grayscale(0%);
     transform: scale(1.05);
 }
