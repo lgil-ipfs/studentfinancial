@@ -550,7 +550,7 @@ footer {
 .resource-card:hover .card-image-bg {
     opacity: 0.05;
     filter: grayscale(0%);
-    transform: scale(1.5);
+    transform: scale(1.05);
 }
 
 /* Content layer stays above overlay */
@@ -712,4 +712,86 @@ footer {
     .counselling-content h2 {
         font-size: 2.2rem;
     }
+}
+
+
+/* Financial Term Highlights */
+.financial-term {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--primary);
+    text-underline-offset: 4px;
+    cursor: help;
+    color: var(--primary);
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.financial-term:hover {
+    background-color: rgba(26, 107, 90, 0.1);
+    border-radius: 4px;
+}
+
+/* Financial Term Popup Wrapper */
+.financial-term-popup {
+    position: absolute;
+    z-index: 9999;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    width: 320px;
+    max-width: 90vw;
+    padding: 20px;
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border: 1px solid rgba(26, 107, 90, 0.1);
+    font-size: 0.95rem;
+}
+
+.financial-term-popup.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.financial-term-popup .popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 8px;
+}
+
+.financial-term-popup .popup-header strong {
+    color: var(--primary);
+    font-size: 1.1rem;
+    font-family: 'Fraunces', serif;
+}
+
+.financial-term-popup .close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--muted);
+}
+
+.financial-term-popup .popup-body {
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.financial-term-popup .popup-link {
+    display: inline-block;
+    color: var(--secondary);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.financial-term-popup .popup-link:hover {
+    color: var(--secondary-light);
 }
