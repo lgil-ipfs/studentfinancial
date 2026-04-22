@@ -1,0 +1,101 @@
+.page-header {
+    padding: 80px 0 60px;
+    background: linear-gradient(180deg, var(--bg) 0%, #fff 100%);
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 48px;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 10px 24px;
+    border-radius: 50px;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    background: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.calculators-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Base card for all calculators */
+.calc-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border-top: 5px solid var(--primary);
+    display: none; /* Hidden by default, shown via filter */
+}
+
+.calc-card.active {
+    display: block;
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+/* Large calculator special layout */
+.calc-card.full-width {
+    grid-column: 1 / -1;
+}
+
+.calc-card h3 {
+    color: var(--primary);
+    margin-bottom: 24px;
+    font-size: 1.8rem;
+    font-family: 'Fraunces', serif;
+}
+
+.calc-inputs {
+    margin-bottom: 32px;
+}
+
+.calc-results {
+    padding: 24px;
+    background: var(--bg);
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.result-value {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+canvas {
+    max-width: 100%;
+    margin-top: 24px;
+}
+
+@media (max-width: 992px) {
+    .calc-grid {
+        grid-template-columns: 1fr;
+    }
+}
