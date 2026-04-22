@@ -28,30 +28,85 @@ const calcLoan = () => {
 let budgetChart;
 const calcBudget = () => {
     const income = parseFloat(document.getElementById('budget-income').value) || 0;
-    const expenses = parseFloat(document.getElementById('budget-expenses').value) || 0;
+    
+    // Check if we are on the advanced budget page with breakdown
+    const housing = parseFloat(document.getElementById('exp-housing')?.value) || 0;
+    const groceries = parseFloat(document.getElementById('exp-groceries')?.value) || 0;
+    const utilities = parseFloat(document.getElementById('exp-utilities')?.value) || 0;
+    const transport = parseFloat(document.getElementById('exp-transport')?.value) || 0;
+    const dining = parseFloat(document.getElementById('exp-dining')?.value) || 0;
+    const subs = parseFloat(document.getElementById('exp-subs')?.value) || 0;
+    const debt = parseFloat(document.getElementById('exp-debt')?.value) || 0;
+    const misc = parseFloat(document.getElementById('exp-misc')?.value) || 0;
+
+    const hasBreakdown = document.getElementById('exp-housing') !== null;
+    let expenses = 0;
+    let data = [];
+    let labels = [];
+    let colors = [];
+
+    if (hasBreakdown) {
+        expenses = housing + groceries + utilities + transport + dining + subs + debt + misc;
+        data = [housing, groceries, utilities, transport, dining, subs, debt, misc];
+        labels = ['Housing', 'Groceries', 'Utilities', 'Transport', 'Dining', 'Subs', 'Debt', 'Misc'];
+        colors = ['#1A6B5A', '#2D8A70', '#E8614A', '#F2994A', '#F2C94C', '#27AE60', '#2F80ED', '#9B51E0'];
+    } else {
+        expenses = parseFloat(document.getElementById('budget-expenses')?.value) || 0;
+        data = [expenses, Math.max(0, income - expenses)];
+        labels = ['Expenses', 'Surplus'];
+        colors = ['#E8614A', '#1A6B5A'];
+    }
+
     const diff = income - expenses;
 
-    document.getElementById('budget-diff').innerText = formatCurrency(Math.abs(diff));
-    document.getElementById('budget-status').innerText = diff >= 0 ? "Surplus" : "Deficit";
-    document.getElementById('budget-status').style.color = diff >= 0 ? "var(--primary)" : "var(--accent)";
+    if (document.getElementById('budget-diff')) {
+        document.getElementById('budget-diff').innerText = formatCurrency(Math.abs(diff));
+    }
+    if (document.getElementById('budget-status')) {
+        document.getElementById('budget-status').innerText = diff >= 0 ? "Surplus" : "Deficit";
+        document.getElementById('budget-status').style.color = diff >= 0 ? "var(--primary)" : "var(--accent)";
+    }
 
-    const ctx = document.getElementById('budgetChart').getContext('2d');
+    const canvas = document.getElementById('budgetChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
     if (budgetChart) budgetChart.destroy();
+    
     budgetChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Income', 'Expenses'],
+            labels: labels,
             datasets: [{
-                data: [income, expenses],
-                backgroundColor: ['#1A6B5A', '#E8614A'],
-                borderWidth: 0
+                data: data,
+                backgroundColor: colors,
+                borderWidth: 2,
+                borderColor: '#ffffff'
             }]
         },
         options: {
             cutout: '70%',
-            plugins: { legend: { display: false } }
+            plugins: { 
+                legend: { 
+                    display: hasBreakdown ? true : false,
+                    position: 'bottom',
+                    labels: {
+                        boxWidth: 12,
+                        padding: 15,
+                        font: { size: 11 }
+                    }
+                } 
+            }
         }
     });
+
+    // Update list breakdown if it exists
+    const listContainer = document.getElementById('expense-breakdown-list');
+    if (listContainer && hasBreakdown) {
+        let html = '<div style="font-weight: 700; margin-bottom: 12px; border-bottom: 1px solid #eee; padding-bottom: 8px;">Summary</div>';
+        html += `<div style="display:flex; justify-content:space-between; margin-bottom:4px;"><span>Total Income:</span> <strong>${formatCurrency(income)}</strong></div>`;
+        html += `<div style="display:flex; justify-content:space-between; margin-bottom:12px;"><span>Total Expenses:</span> <strong>${formatCurrency(expenses)}</strong></div>`;
+        listContainer.innerHTML = html;
+    }
 };
 
 // 4. Net Worth Tracker
