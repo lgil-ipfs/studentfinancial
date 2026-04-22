@@ -85,9 +85,17 @@
     <section class="section-padding">
         <div class="container">
             
-            <div class="calc-hub-grid">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Tools</button>
+                <button class="filter-btn" data-filter="loans">Loans</button>
+                <button class="filter-btn" data-filter="budgeting">Budgeting</button>
+                <button class="filter-btn" data-filter="credit">Credit</button>
+                <button class="filter-btn" data-filter="saving">Saving</button>
+            </div>
+
+            <div class="calc-hub-grid" id="tools-grid">
                 <!-- 1 -->
-                <a href="calc-student-loan.html" class="calc-tile">
+                <a href="calc-student-loan.html" class="calc-tile" data-category="loans">
                     <span class="category">Student Loans</span>
                     <h3>Canadian Student Loan Repayment Tool</h3>
                     <p>The most advanced tool for Canadian students. Model your grace period, RAP eligibility, and provincial interest rates.</p>
@@ -95,7 +103,7 @@
                 </a>
 
                 <!-- 2 -->
-                <a href="calc-budget.html" class="calc-tile">
+                <a href="calc-budget.html" class="calc-tile" data-category="budgeting">
                     <span class="category">Budgeting</span>
                     <h3>Monthly Budget Checker</h3>
                     <p>A quick way to see if your monthly income covers your student life. Spot surpluses or deficits before they happen.</p>
@@ -103,7 +111,7 @@
                 </a>
 
                 <!-- 3 -->
-                <a href="calc-cc-danger.html" class="calc-tile">
+                <a href="calc-cc-danger.html" class="calc-tile" data-category="credit">
                     <span class="category">Credit</span>
                     <h3>Credit Card "Minimum" Danger</h3>
                     <p>See exactly how much a $2,000 balance actually costs if you only pay the minimum. A must-use before your first card.</p>
@@ -111,7 +119,7 @@
                 </a>
 
                 <!-- 4 -->
-                <a href="calc-tfsa-growth.html" class="calc-tile">
+                <a href="calc-tfsa-growth.html" class="calc-tile" data-category="saving">
                     <span class="category">Saving</span>
                     <h3>TFSA Growth Projector</h3>
                     <p>Visualize how small, regular contributions can grow into a significant tax-free safety net over your degree and beyond.</p>
@@ -119,7 +127,7 @@
                 </a>
 
                 <!-- 5 -->
-                <a href="calc-net-worth.html" class="calc-tile">
+                <a href="calc-net-worth.html" class="calc-tile" data-category="loans">
                     <span class="category">Net Worth</span>
                     <h3>Student Net Worth Tracker</h3>
                     <p>Track your assets vs. liabilities. It's okay to start negative—the goal is to see the trend move upward.</p>
@@ -127,7 +135,7 @@
                 </a>
 
                 <!-- 6 -->
-                <a href="calc-debt-compare.html" class="calc-tile">
+                <a href="calc-debt-compare.html" class="calc-tile" data-category="loans">
                     <span class="category">Debt</span>
                     <h3>Avalanche vs. Snowball</h3>
                     <p>Have multiple debts? Compare the two most popular repayment strategies to see which saves you the most money.</p>
@@ -143,5 +151,29 @@
     <script src="js/components.js"></script>
     <script src="js/mobile-menu.js"></script>
     <script src="js/term-popups.js"></script>
+    <script>
+        // Filtering logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const tools = document.querySelectorAll('.calc-tile');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                tools.forEach(tool => {
+                    const category = tool.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        tool.style.display = 'flex';
+                    } else {
+                        tool.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
