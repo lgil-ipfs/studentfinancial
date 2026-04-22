@@ -259,3 +259,25 @@
     .article-main-img { height: 300px; margin-bottom: 40px; }
     .quiz-container { padding: 32px 24px; margin: 60px 0; }
 }
+
+.compliance-disclaimer {
+    max-width: 750px;
+    margin: 40px auto 80px;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.03);
+    border-left: 4px solid var(--muted);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.compliance-disclaimer strong {
+    color: var(--text);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 8px;
+}
+
