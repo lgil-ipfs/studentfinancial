@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rule of 72: Estimating Growth | StudentFinancial.ca</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/article.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+    <meta name="description" content="Want to know how long it will take to double your money? You don't need a PhD in math—you just need the Rule of 72.">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <article class="article-page section-padding">
+        <div class="container">
+            <header class="article-hero">
+                <span class="article-category">Saving & Investing</span>
+                <h1>The Rule of 72: Estimating Growth</h1>
+                <div class="article-meta">
+                    <span>6 min read</span>
+                    <span>&bull;</span>
+                    <span>Updated April 2026</span>
+                </div>
+            </header>
+
+            <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=1200" alt="Plant growing out of a stack of coins" class="article-main-img">
+
+            <div class="article-body">
+                <p>Most people struggle to understand the concept of <strong>compounding</strong> because our brains are wired for linear growth. If you earn $100 a year, you’ll have $1,000 in ten years. Simple.</p>
+                
+                <p>But compounding is exponential. Your interest earns interest. Eventually, the growth of the growth starts to outpace your original contributions. The "Rule of 72" is a mental math shortcut to help you visualize exactly how powerful time can be.</p>
+
+                <h2>The Formula</h2>
+                <div class="info-box" style="text-align: center;">
+                    <h3 style="font-size: 2.5rem; margin-bottom: 8px;">72 &divide; R = Y</h3>
+                    <p><strong>72</strong> divided by your <strong>Rate of Return (R)</strong> equals the number of <strong>Years (Y)</strong> to double your money.</p>
+                </div>
+
+                <p>For example, if you invest $1,000 in an index fund that average <strong>7%</strong> returns per year:</p>
+                <p style="text-align: center; font-weight: 700;">72 &divide; 7 = ~10.3 Years</p>
+                <p>In roughly 10 years, your $1,000 becomes $2,000 without you lifting a finger.</p>
+
+                <h2>Reverse Engineering: Debt</h2>
+                <p>The scary part? The Rule of 72 works for your creditors, too. If you have a credit card balance at <strong>24% interest</strong> and you don't make any payments:</p>
+                <p style="text-align: center; font-weight: 700;">72 &divide; 24 = 3 Years</p>
+                <p>In just three short years, your debt doubles. This is why high-interest debt feels so inescapable—the math is working against you at triple speed.</p>
+
+                <div class="pull-quote">
+                    "Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays it." — (Attributed to) Albert Einstein
+                </div>
+
+                <h2>Why it matters for students</h2>
+                <p>As a student, you have the one asset that billionaires can't buy more of: <strong>Time.</strong></p>
+                <p>Because of the Rule of 72, a single $1,000 investment made at age 20 could double five or six times before you retire. By age 30, that same $1,000 would only have time to double four times. That ten-year delay could cost you hundreds of thousands of dollars in the long run.</p>
+
+                <div id="quiz-section" class="quiz-container">
+                    <!-- Quiz will be injected here -->
+                </div>
+            </div>
+
+            <div class="compliance-disclaimer">
+                <strong>Compliance Disclaimer</strong>
+                <p>The Rule of 72 is a mathematical estimation and does not account for taxes, fees, inflation, or market volatility. Investment returns are not guaranteed. Past performance is not indicative of future results. Please consult a qualified financial professional before making investment decisions.</p>
+            </div>
+        </div>
+    </article>
+    <div id="footer-placeholder"></div>
+
+    <script src="js/quiz.js"></script>
+    <script>
+        const rule72Quiz = new Quiz('quiz-section', [
+            {
+                question: "If you earn a 12% return on an investment, how long will it take for your money to double?",
+                options: ["12 years", "6 years", "10 years", "72 years"],
+                correctIndex: 1,
+                explanation: "72 divided by 12 equals 6. Your money doubles every 6 years at a 12% rate."
+            },
+            {
+                question: "What is the primary factor that makes the Rule of 72 so powerful for young investors?",
+                options: ["The amount of money they have", "The high taxes they pay", "The amount of time they have for money to double", "Their ability to predict the stock market"],
+                correctIndex: 2,
+                explanation: "Time is the most critical variable in compounding. The more 'doubling cycles' you have before retirement, the more wealth you build."
+            },
+            {
+                question: "Why should you be worried about the Rule of 72 when it comes to credit card debt?",
+                options: [
+                    "Because it means your debt is shrinking",
+                    "Because high interest rates make the debt double extremely quickly",
+                    "Because banks don't know the Rule of 72",
+                    "Because it only applies to savings, not debt"
+                ],
+                correctIndex: 1,
+                explanation: "At high interest rates (like 18-24%), your debt can double in as little as 3 or 4 years if left unpaid."
+            }
+        ]);
+    </script>
+    <script src="js/components.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/term-popups.js"></script>
+</body>
+</html>
