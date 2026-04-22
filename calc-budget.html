@@ -3,90 +3,461 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monthly Budget Checker | StudentFinancial.ca</title>
+    <title>Student Budget Builder | StudentFinancial.ca</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/calculators.css">
     <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --brand-navy: #1a2b3b;
+            --brand-teal: #1A6B5A;
+            --brand-teal-light: #4DA191;
+            --brand-gold: #E8A020;
+            --brand-slate: #546e7a;
+            --brand-red: #E8614A;
+            --brand-amber: #f2994a;
+        }
+
+        .budget-builder {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Steps */
+        .step-container {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .step-container.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .quiz-card {
+            background: white;
+            padding: 48px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .quiz-opt {
+            padding: 24px;
+            border: 2px solid #eee;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .quiz-opt:hover {
+            border-color: var(--brand-teal);
+            background: rgba(26, 107, 90, 0.05);
+        }
+
+        .quiz-opt.selected {
+            border-color: var(--brand-teal);
+            background: var(--brand-teal);
+            color: white;
+        }
+
+        /* Input Sections */
+        .budget-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        @media (max-width: 992px) {
+            .budget-grid { grid-template-columns: 1fr; }
+        }
+
+        .input-group-card {
+            background: white;
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+        }
+
+        .input-group-card h3 {
+            margin-bottom: 24px;
+            font-family: 'Fraunces', serif;
+            color: var(--brand-navy);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .field-row {
+            margin-bottom: 20px;
+        }
+
+        .field-row label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--brand-slate);
+        }
+
+        .field-row input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .field-row input:focus {
+            border-color: var(--brand-teal);
+            outline: none;
+        }
+
+        /* Results Display */
+        .results-sticky {
+            position: sticky;
+            top: 24px;
+        }
+
+        .status-hero {
+            padding: 32px;
+            border-radius: 24px;
+            text-align: center;
+            margin-bottom: 24px;
+            transition: background 0.3s ease;
+        }
+
+        .status-hero.positive { background: #e6f3f0; color: var(--brand-teal); }
+        .status-hero.warning { background: #fff8e6; color: var(--brand-gold); }
+        .status-hero.negative { background: #feebe8; color: var(--brand-red); }
+
+        .status-hero h2 { font-size: 3rem; font-family: 'Fraunces', serif; margin: 8px 0; }
+        .status-hero p { font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0; }
+
+        .viz-toggle {
+            display: flex;
+            background: #eee;
+            padding: 4px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .viz-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .viz-btn.active {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            color: var(--brand-teal);
+        }
+
+        .viz-container {
+            background: white;
+            padding: 24px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            min-height: 400px;
+        }
+
+        /* Money Flow Card */
+        .flow-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .flow-col { flex: 1; }
+        .flow-val { font-size: 1.8rem; font-weight: 800; font-family: 'Fraunces', serif; margin-top: 8px; }
+        .flow-arrow { font-size: 2rem; color: #ddd; }
+
+        /* Insights */
+        .insights-card {
+            background: #f8fafb;
+            padding: 32px;
+            border-radius: 24px;
+            margin-top: 32px;
+        }
+
+        .insight-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .insight-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* What If Slider */
+        .what-if-box {
+            background: var(--brand-navy);
+            color: white;
+            padding: 32px;
+            border-radius: 24px;
+            margin-top: 24px;
+        }
+
+        .what-if-box h4 { color: white; margin-bottom: 16px; }
+
+        input[type=range].custom-slider {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            appearance: none;
+            margin: 20px 0;
+        }
+
+        input[type=range].custom-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--brand-teal-light);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .footer-disclaimer {
+            text-align: center;
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        .export-btn {
+            display: block;
+            width: 100%;
+            margin-top: 24px;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+    </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
     <section class="section-padding">
-        <div class="container">
-            <div style="max-width: 900px; margin: 0 auto;">
-                <a href="calculators.html" style="display: inline-block; margin-bottom: 32px; font-weight: 600; color: var(--primary);">← Back to Tools</a>
-                
-                <h1 style="font-size: 2.5rem; color: var(--primary); font-family: 'Fraunces', serif; margin-bottom: 12px;">Monthly Budget Checker</h1>
-                <p style="color: var(--text); font-size: 1.1rem; margin-bottom: 40px;">A simple check to ensure you're living within your means.</p>
+        <div class="container budget-builder" id="budget-pdf-area">
+            
+            <!-- STEP 0: THE QUIZ -->
+            <div id="step-quiz" class="step-container active">
+                <div class="quiz-card">
+                    <span class="subheading">Step 1 of 2</span>
+                    <h2 style="font-family: 'Fraunces', serif; margin-top: 8px;">Where are you studying?</h2>
+                    <p>This helps us set realistic rent and life benchmarks for your area.</p>
+                    
+                    <div class="quiz-options">
+                        <div class="quiz-opt" onclick="selectCity('tier1')">
+                            <h3>Major Hub</h3>
+                            <p>Toronto, Vancouver, Victoria</p>
+                        </div>
+                        <div class="quiz-opt" onclick="selectCity('tier2')">
+                            <h3>Mid-Size City</h3>
+                            <p>Ottawa, Calgary, Halifax, Montreal</p>
+                        </div>
+                        <div class="quiz-opt" onclick="selectCity('tier3')">
+                            <h3>Smaller City/Town</h3>
+                            <p>London, Kingston, Lethbridge, etc.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                <div class="calc-card active" style="display: block;">
-                    <div class="calc-grid" style="grid-template-columns: 1.2fr 0.8fr;">
-                        <div class="calc-inputs" id="budget-inputs-container">
-                            <div class="form-group" style="margin-bottom: 24px;">
-                                <label style="font-weight: 700; color: var(--primary);">Total Monthly Income ($)</label>
-                                <input type="number" id="budget-income" value="2500" class="budget-input">
-                            </div>
+            <!-- STEP 1: THE BUILDER -->
+            <div id="step-builder" class="step-container">
+                <div style="margin-bottom: 32px;">
+                    <a href="#" onclick="showStep('quiz')" style="color: var(--brand-teal); font-weight: 600;">← Back to details</a>
+                </div>
 
-                            <h4 style="margin-bottom: 16px; border-bottom: 1px solid #eee; padding-bottom: 8px;">Monthly Expenses Breakdown</h4>
+                <div class="budget-grid">
+                    <!-- INPUTS COLUMN -->
+                    <div class="inputs-col">
+                        <div class="input-group-card">
+                            <h3>Monthly Income</h3>
+                            <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">Use your average monthly "take-home" totals.</p>
                             
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                                <div class="form-group">
-                                    <label>Rent / Housing</label>
-                                    <input type="number" id="exp-housing" value="1000" class="budget-input">
-                                </div>
-                                <div class="form-group">
-                                    <label>Groceries</label>
-                                    <input type="number" id="exp-groceries" value="400" class="budget-input">
-                                </div>
-                                <div class="form-group">
-                                    <label>Utilities & Phone</label>
-                                    <input type="number" id="exp-utilities" value="150" class="budget-input">
-                                </div>
-                                <div class="form-group">
-                                    <label>Transportation</label>
-                                    <input type="number" id="exp-transport" value="100" class="budget-input">
-                                </div>
-                                <div class="form-group">
-                                    <label>Dining & Social</label>
-                                    <input type="number" id="exp-dining" value="200" class="budget-input">
-                                </div>
-                                <div class="form-group">
-                                    <label>Subscriptions</label>
-                                    <input type="number" id="exp-subs" value="50" class="budget-input">
-                                </div>
-                                <div class="form-group">
-                                    <label>Debt Payments</label>
-                                    <input type="number" id="exp-debt" value="100" class="budget-input">
-                                </div>
-                                <div class="form-group">
-                                    <label>Misc / Fitness</label>
-                                    <input type="number" id="exp-misc" value="100" class="budget-input">
-                                </div>
+                            <div class="field-row">
+                                <label>Part-time Job Pay</label>
+                                <input type="number" id="in-job" placeholder="0" class="inc-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Student Loans / OSAP (Spread Monthly)</label>
+                                <input type="number" id="in-loans" placeholder="0" class="inc-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Grants & Scholarships (Spread Monthly)</label>
+                                <input type="number" id="in-grants" placeholder="0" class="inc-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Parental / Family Support</label>
+                                <input type="number" id="in-parent" placeholder="0" class="inc-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Other Income</label>
+                                <input type="number" id="in-other" placeholder="0" class="inc-input">
                             </div>
                         </div>
 
-                        <div class="calc-results">
-                            <div style="text-align: center; margin-bottom: 24px;">
-                                <div id="budget-status" style="font-size: 1.2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 4px;">Surplus</div>
-                                <div id="budget-diff" style="font-size: 2.5rem; font-family: 'Fraunces', serif; color: var(--primary); font-weight: 700;">$400.00</div>
-                                <div style="font-size: 0.9rem; color: #666; margin-top: 4px;">Remaining per month</div>
+                        <div class="input-group-card">
+                            <h3>Monthly Expenses</h3>
+                            
+                            <div class="field-row">
+                                <label>Rent / Housing</label>
+                                <input type="number" id="ex-rent" placeholder="0" class="exp-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Groceries</label>
+                                <input type="number" id="ex-groceries" placeholder="0" class="exp-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Eating Out / Takeout</label>
+                                <input type="number" id="ex-dining" placeholder="0" class="exp-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Transportation (Transit, Gas, Uber)</label>
+                                <input type="number" id="ex-transport" placeholder="0" class="exp-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Phone & Internet</label>
+                                <input type="number" id="ex-comms" placeholder="0" class="exp-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Subscriptions (Netflix, Spotify, etc.)</label>
+                                <input type="number" id="ex-subs" placeholder="0" class="exp-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Textbooks & Supplies</label>
+                                <input type="number" id="ex-books" placeholder="0" class="exp-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Tuition Payments (Spread Monthly)</label>
+                                <input type="number" id="ex-tuition" placeholder="0" class="exp-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Student Loan / CC Payments</label>
+                                <input type="number" id="ex-debt" placeholder="0" class="exp-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Personal Care & Fitness</label>
+                                <input type="number" id="ex-care" placeholder="0" class="exp-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Entertainment & Hobbies</label>
+                                <input type="number" id="ex-fun" placeholder="0" class="exp-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Savings / Emergency Fund</label>
+                                <input type="number" id="ex-savings" placeholder="0" class="exp-input">
+                            </div>
+                            <div class="field-row">
+                                <label>Other Expenses</label>
+                                <input type="number" id="ex-other" placeholder="0" class="exp-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RESULTS COLUMN -->
+                    <div class="results-col">
+                        <div class="results-sticky">
+                            <div id="status-display" class="status-hero positive">
+                                <p id="status-label">Monthly Surplus</p>
+                                <h2 id="status-value">$0</h2>
                             </div>
 
-                            <canvas id="budgetChart" height="300"></canvas>
-
-                            <div id="expense-breakdown-list" style="margin-top: 24px; font-size: 0.85rem;">
-                                <!-- Legend/Breakdown injected here -->
+                            <div class="viz-toggle">
+                                <button class="viz-btn active" onclick="switchViz('donut')">Breakdown</button>
+                                <button class="viz-btn" onclick="switchViz('bench')">vs Benchmark</button>
+                                <button class="viz-btn" onclick="switchViz('flow')">Money Flow</button>
                             </div>
+
+                            <div class="viz-container">
+                                <div id="viz-donut">
+                                    <canvas id="donutChart"></canvas>
+                                </div>
+                                <div id="viz-bench" style="display:none;">
+                                    <h4 style="margin-bottom: 20px; font-size: 0.9rem; text-align: center; color: var(--brand-slate);">Targeted Student Spending %</h4>
+                                    <canvas id="benchChart"></canvas>
+                                </div>
+                                <div id="viz-flow" style="display:none;">
+                                    <div class="flow-card">
+                                        <div class="flow-col">
+                                            <div class="category" style="color: var(--brand-teal);">INCOME</div>
+                                            <div class="flow-val" id="flow-in">$0</div>
+                                        </div>
+                                        <div class="flow-arrow">→</div>
+                                        <div class="flow-col">
+                                            <div class="category" style="color: var(--brand-red);">EXPENSES</div>
+                                            <div class="flow-val" id="flow-out">$0</div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center; padding-top: 20px; border-top: 1px solid #f0f0f0;">
+                                        <div class="category">NET SAVINGS RATE</div>
+                                        <div class="flow-val" id="flow-rate">0%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="what-if-box">
+                                <h4>Simple "What If"</h4>
+                                <p style="font-size: 0.9rem; opacity: 0.8;">What if I cut eating out by <span id="what-if-val">$50</span> per month?</p>
+                                <input type="range" min="0" max="500" value="50" class="custom-slider" id="what-if-slider" oninput="updateWhatIf()">
+                                <p style="font-size: 0.9rem; font-weight: 700;">New Surplus: <span id="what-if-result">$0</span></p>
+                            </div>
+
+                            <button class="btn btn-primary export-btn" onclick="exportPDF()">Save PDF Summary</button>
                         </div>
                     </div>
                 </div>
 
-                <div style="margin-top: 48px;">
-                    <h3>Why tracking matters</h3>
-                    <p>For students, budgeting isn't about restriction; it's about awareness. Knowing that you have a $200 surplus means you can save for your next semester's books or enjoy a guilt-free dinner out. Knowing you have a deficit means you can adjust before you need to rely on high-interest credit cards.</p>
+                <div class="insights-card" id="insights-container">
+                    <h3 style="font-family: 'Fraunces', serif; margin-bottom: 24px;">Smart Insights</h3>
+                    <div id="insights-list">
+                        <!-- Insights will be injected here -->
+                    </div>
                 </div>
             </div>
+
+            <p class="footer-disclaimer">
+                This tool is for educational purposes only and does not constitute financial advice. For personalized guidance, <a href="https://cal.com/student-financial-support/30-mins" target="_blank">book a free counselling session.</a>
+            </p>
         </div>
     </section>
 
@@ -94,7 +465,205 @@
 
     <script src="js/components.js"></script>
     <script src="js/mobile-menu.js"></script>
-    <script src="js/calculators.js"></script>
     <script src="js/term-popups.js"></script>
+    <script>
+        let selectedTier = 'tier2';
+        let charts = {};
+        
+        // Benchmarks by tier (City)
+        const benchmarks = {
+            tier1: { rent: 0.45, food: 0.15, fun: 0.10, saved: 0.10 },
+            tier2: { rent: 0.35, food: 0.15, fun: 0.10, saved: 0.10 },
+            tier3: { rent: 0.28, food: 0.15, fun: 0.10, saved: 0.10 }
+        };
+
+        function showStep(step) {
+            document.querySelectorAll('.step-container').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step-${step}`).classList.add('active');
+        }
+
+        function selectCity(tier) {
+            selectedTier = tier;
+            showStep('builder');
+            // Pre-fill some defaults if they were empty
+            runCalc();
+        }
+
+        function switchViz(viz) {
+            document.querySelectorAll('.viz-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            ['donut', 'bench', 'flow'].forEach(v => {
+                document.getElementById(`viz-${v}`).style.display = (v === viz) ? 'block' : 'none';
+            });
+        }
+
+        function runCalc() {
+            // Income
+            const inTotal = ['in-job', 'in-loans', 'in-grants', 'in-parent', 'in-other']
+                .reduce((a, c) => a + (parseFloat(document.getElementById(c).value) || 0), 0);
+            
+            // Expenses
+            const rent = parseFloat(document.getElementById('ex-rent').value) || 0;
+            const groceries = parseFloat(document.getElementById('ex-groceries').value) || 0;
+            const dining = parseFloat(document.getElementById('ex-dining').value) || 0;
+            const transport = parseFloat(document.getElementById('ex-transport').value) || 0;
+            const comms = parseFloat(document.getElementById('ex-comms').value) || 0;
+            const subs = parseFloat(document.getElementById('ex-subs').value) || 0;
+            const books = parseFloat(document.getElementById('ex-books').value) || 0;
+            const tuition = parseFloat(document.getElementById('ex-tuition').value) || 0;
+            const debt = parseFloat(document.getElementById('ex-debt').value) || 0;
+            const care = parseFloat(document.getElementById('ex-care').value) || 0;
+            const fun = parseFloat(document.getElementById('ex-fun').value) || 0;
+            const savings = parseFloat(document.getElementById('ex-savings').value) || 0;
+            const other = parseFloat(document.getElementById('ex-other').value) || 0;
+
+            const exTotal = rent + groceries + dining + transport + comms + subs + books + tuition + debt + care + fun + savings + other;
+            const diff = inTotal - exTotal;
+            const savedRate = inTotal > 0 ? (diff / inTotal) * 100 : 0;
+
+            // Update Status
+            const display = document.getElementById('status-display');
+            const valEl = document.getElementById('status-value');
+            const labelEl = document.getElementById('status-label');
+            
+            valEl.innerText = new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format(Math.abs(diff));
+            labelEl.innerText = diff >= 0 ? "Monthly Surplus" : "Monthly Deficit";
+
+            display.className = 'status-hero';
+            if (diff < -50) display.classList.add('negative');
+            else if (diff <= 100) display.classList.add('warning');
+            else display.classList.add('positive');
+
+            // Flow
+            document.getElementById('flow-in').innerText = '$' + Math.round(inTotal);
+            document.getElementById('flow-out').innerText = '$' + Math.round(exTotal);
+            document.getElementById('flow-rate').innerText = Math.round(savedRate) + '%';
+
+            updateCharts(rent, groceries, dining, transport, comms, subs, books, tuition, debt, care, fun, savings, other, inTotal);
+            generateInsights(rent, inTotal, diff, dining);
+            updateWhatIf();
+        }
+
+        function updateCharts(rent, groceries, dining, transport, comms, subs, books, tuition, debt, care, fun, savings, other, income) {
+            // Donut
+            const donutCtx = document.getElementById('donutChart').getContext('2d');
+            if (charts.donut) charts.donut.destroy();
+            charts.donut = new Chart(donutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Rent', 'Groceries', 'Dining', 'Transport', 'Comms', 'Education', 'Debt', 'Lifestyle', 'Other'],
+                    datasets: [{
+                        data: [rent, groceries, dining, transport, comms, books+tuition, debt, fun+care+subs, other+savings],
+                        backgroundColor: ['#1a2b3b', '#1A6B5A', '#4DA191', '#E8A020', '#546e7a', '#78909c', '#cfd8dc', '#b0bec5', '#eceff1'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { cutout: '65%', plugins: { legend: { display: false } } }
+            });
+
+            // Benchmark
+            const benchCtx = document.getElementById('benchChart').getContext('2d');
+            const b = benchmarks[selectedTier];
+            const actuals = [
+                (rent / income) || 0,
+                (groceries / income) || 0,
+                (dining / income) || 0,
+                (transport / income) || 0
+            ];
+            const targets = [b.rent, b.food, 0.08, b.fun];
+            const labels = ['Housing', 'Food', 'Social', 'Transport'];
+
+            if (charts.bench) charts.bench.destroy();
+            charts.bench = new Chart(benchCtx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: actuals.map(a => a * 100),
+                        backgroundColor: actuals.map((a, i) => {
+                            if (a > targets[i] * 1.25) return '#E8614A';
+                            if (a > targets[i]) return '#E8A020';
+                            return '#1A6B5A';
+                        }),
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    plugins: { legend: { display: false } },
+                    scales: { 
+                        x: { max: 100, ticks: { callback: v => v + '%' } }
+                    }
+                }
+            });
+        }
+
+        function generateInsights(rent, income, diff, dining) {
+            const list = document.getElementById('insights-list');
+            list.innerHTML = '';
+            
+            const b = benchmarks[selectedTier];
+            const rentRatio = rent / income;
+            
+            if (rentRatio > b.rent) {
+                const over = Math.round((rentRatio - b.rent) * income);
+                addInsight(`Your biggest expense category is rent at ${Math.round(rentRatio*100)}% of your income — that's above the recommended ${Math.round(b.rent*100)}% for students. Consider whether shared housing could free up $${over} per month.`);
+            }
+
+            if (diff < 0) {
+                addInsight(`You're currently spending more than you earn by $${Math.abs(Math.round(diff))}. Looking at your breakdown, the ${dining > 100 ? 'Dining' : 'Lifestyle'} category has the most room to adjust.`);
+            } else if (diff < 100) {
+                addInsight(`You're in the "green zone," but it's lean. Building a small emergency buffer of $50/month in your 'Savings' row could provide a huge safety net for unexpected car or book costs.`);
+            } else {
+                addInsight(`Great job! You have a healthy surplus of $${Math.round(diff)}. This is the perfect time to open a TFSA and let that extra money start growing tax-free.`);
+            }
+        }
+
+        function addInsight(text) {
+            const list = document.getElementById('insights-list');
+            list.innerHTML += `
+                <div class="insight-item">
+                    <div class="insight-icon">💡</div>
+                    <p style="font-size: 0.95rem; line-height: 1.5;">${text}</p>
+                </div>
+            `;
+        }
+
+        function updateWhatIf() {
+            const cutVal = parseInt(document.getElementById('what-if-slider').value);
+            document.getElementById('what-if-val').innerText = '$' + cutVal;
+            
+            const inTotal = ['in-job', 'in-loans', 'in-grants', 'in-parent', 'in-other']
+                .reduce((a, c) => a + (parseFloat(document.getElementById(c).value) || 0), 0);
+            const exTotalRaw = ['ex-rent', 'ex-groceries', 'ex-dining', 'ex-transport', 'ex-comms', 'ex-subs', 'ex-books', 'ex-tuition', 'ex-debt', 'ex-care', 'ex-fun', 'ex-savings', 'ex-other']
+                .reduce((a, c) => a + (parseFloat(document.getElementById(c).value) || 0), 0);
+            
+            const diningOrg = parseFloat(document.getElementById('ex-dining').value) || 0;
+            const actualCut = Math.min(cutVal, diningOrg);
+            const newDiff = inTotal - (exTotalRaw - actualCut);
+
+            document.getElementById('what-if-result').innerText = new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format(newDiff);
+            document.getElementById('what-if-result').style.color = newDiff >= 0 ? 'var(--brand-teal-light)' : '#ff9eac';
+        }
+
+        function exportPDF() {
+            const element = document.getElementById('budget-pdf-area');
+            const opt = {
+                margin: 10,
+                filename: 'Student-Financial-Budget.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'vertical' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        // Attach listeners
+        document.querySelectorAll('.inc-input, .exp-input').forEach(i => {
+            i.addEventListener('input', runCalc);
+        });
+
+    </script>
 </body>
 </html>
