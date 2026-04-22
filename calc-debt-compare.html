@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avalanche vs. Snowball Comparison | StudentFinancial.ca</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/calculators.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="section-padding">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <a href="calculators.html" style="display: inline-block; margin-bottom: 32px; font-weight: 600; color: var(--primary);">← Back to Tools</a>
+                
+                <h1 style="font-size: 2.5rem; color: var(--primary); font-family: 'Fraunces', serif; margin-bottom: 12px;">Avalanche vs. Snowball</h1>
+                <p style="color: var(--text); font-size: 1.1rem; margin-bottom: 40px;">Compare repayment strategies to see which fits your psychology and your wallet.</p>
+
+                <div class="calc-card active" style="display: block;">
+                    <div class="calc-grid">
+                        <div class="calc-inputs">
+                            <p style="font-size: 0.9rem; margin-bottom: 24px; color: #666;">Scenario: You have a $5,000 Credit Card balance (19.9%) and $15,000 Student Loan (6%).</p>
+                            <div class="form-group">
+                                <label>Extra Monthly Payment ($)</label>
+                                <input type="number" id="extra-pay" value="200">
+                            </div>
+                        </div>
+                        <div class="calc-results">
+                            <div class="result-item" style="margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid rgba(0,0,0,0.05);">
+                                <span>Avalanche Savings:</span>
+                                <span class="result-value" id="av-save" style="color: var(--primary); font-size: 1.5rem;">$1,420.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Snowball Speed:</span>
+                                <span class="result-value" id="sb-speed" style="font-size: 1.5rem;">1 month faster win</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 48px;">
+                    <h3>Which one should you choose?</h3>
+                    <p><strong>The Debt Avalanche:</strong> You pay off the debt with the highest interest rate first. This is mathematically superior and saves you the most in interest.</p>
+                    <p><strong>The Debt Snowball:</strong> You pay off the debt with the smallest balance first. This provides a "psychological win" earlier, which can help stay motivated if you have many small debts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/calculators.js"></script>
+    <script src="js/term-popups.js"></script>
+</body>
+</html>

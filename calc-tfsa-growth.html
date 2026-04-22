@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFSA Growth Projector | StudentFinancial.ca</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/calculators.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="section-padding">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <a href="calculators.html" style="display: inline-block; margin-bottom: 32px; font-weight: 600; color: var(--primary);">← Back to Tools</a>
+                
+                <h1 style="font-size: 2.5rem; color: var(--primary); font-family: 'Fraunces', serif; margin-bottom: 12px;">TFSA Growth Projector</h1>
+                <p style="color: var(--text); font-size: 1.1rem; margin-bottom: 40px;">See the power of tax-free compound interest over time.</p>
+
+                <div class="calc-card active" style="display: block;">
+                    <div class="calc-grid">
+                        <div class="calc-inputs">
+                            <div class="form-group">
+                                <label>Monthly Contribution ($)</label>
+                                <input type="number" id="tfsa-monthly" value="200">
+                            </div>
+                            <div class="form-group">
+                                <label>Expected Return (%)</label>
+                                <input type="number" id="tfsa-return" value="6">
+                            </div>
+                            <div class="form-group">
+                                <label>Years to Save</label>
+                                <input type="number" id="tfsa-years" value="10">
+                            </div>
+                        </div>
+                        <div class="calc-results">
+                            <div class="result-item" style="margin-bottom: 24px;">
+                                <span>Projected Balance:</span>
+                                <span class="result-value" id="tfsa-res" style="font-size: 1.8rem;">$32,775.00</span>
+                            </div>
+                            <canvas id="tfsaChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 48px;">
+                    <h3>The TFSA Edge</h3>
+                    <p>Unlike a standard savings account, anything you earn inside a Tax-Free Savings Account (TFSA) is 100% yours to keep. You don't pay tax on the interest, dividends, or capital gains. Over 10-20 years, this tax savings can amount to tens of thousands of dollars.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/calculators.js"></script>
+    <script src="js/term-popups.js"></script>
+</body>
+</html>

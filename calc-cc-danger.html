@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Minimum Payment Danger | StudentFinancial.ca</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/calculators.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="section-padding">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <a href="calculators.html" style="display: inline-block; margin-bottom: 32px; font-weight: 600; color: var(--primary);">← Back to Tools</a>
+                
+                <h1 style="font-size: 2.5rem; color: var(--primary); font-family: 'Fraunces', serif; margin-bottom: 12px;">Credit Card "Minimum" Danger</h1>
+                <p style="color: var(--text); font-size: 1.1rem; margin-bottom: 40px;">See the real cost of only paying the minimum on your credit cards.</p>
+
+                <div class="calc-card active" style="display: block;">
+                    <div class="calc-grid">
+                        <div class="calc-inputs">
+                            <div class="form-group">
+                                <label>Credit Card Balance ($)</label>
+                                <input type="number" id="cc-balance" value="2000">
+                            </div>
+                            <div class="form-group">
+                                <label>Interest Rate (%)</label>
+                                <input type="number" id="cc-rate" value="19.9">
+                            </div>
+                        </div>
+                        <div class="calc-results">
+                            <p style="margin-bottom: 12px; font-weight: 600;">If you only pay the minimum (approx 3%):</p>
+                            <div class="result-item" style="margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid rgba(0,0,0,0.05);">
+                                <span>Years to pay off:</span>
+                                <span class="result-value" id="cc-years" style="font-size: 1.5rem;">12.5 Years</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Total Interest Cost:</span>
+                                <span class="result-value" id="cc-interest" style="color: var(--accent); font-size: 1.5rem;">$2,450.00</span>
+                            </div>
+                            <div style="margin-top: 24px; font-size: 0.9rem; color: #666; background: #fffbe6; padding: 16px; border-radius: 8px; border-left: 4px solid #faad14;">
+                                <strong>Warning:</strong> You will pay more in interest than the original amount you borrowed.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 48px;">
+                    <h3>The Minimum Payment Trap</h3>
+                    <p>Banks set low minimum payments (usually 3% of your balance) to keep you in debt as long as possible. High interest rates (like the standard 19.9% or 22.9%) mean that most of your minimum payment goes toward interest, leaving your balance virtually unchanged month after month.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/calculators.js"></script>
+    <script src="js/term-popups.js"></script>
+</body>
+</html>
