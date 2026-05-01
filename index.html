@@ -229,66 +229,78 @@
         </div>
     </section>
 
-    <section class="quick-nav section-padding">
-        <div class="container">
+    <section class="quick-nav section-padding" style="position: relative; overflow: hidden;">
+        <div class="blob blob-1" style="top: 10%; left: -5%; opacity: 0.15; width: 300px; height: 300px; background: var(--secondary);"></div>
+        <div class="blob blob-2" style="bottom: 10%; right: -5%; opacity: 0.15; width: 400px; height: 400px; background: var(--primary);"></div>
+        <div class="container" style="position: relative; z-index: 2;">
             <div class="section-header-centered">
                 <span class="subheading">Resources</span>
                 <h2>What You'll Find Here</h2>
                 <p>Everything you need to master your student finances, all in one place.</p>
             </div>
             <div class="resources-grid">
-                <a href="debt-repayment.html" class="resource-card card-large">
+                <!-- Highlight: Master Your Debt -->
+                <a href="debt-repayment.html" class="resource-card card-featured">
                     <div class="card-image-bg">
                         <img src="https://images.pexels.com/photos/1438072/pexels-photo-1438072.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Student success">
                     </div>
                     <div class="card-content">
+                        <div class="card-tag">Mastery</div>
                         <h3>Master Your Debt</h3>
                         <p>A step-by-step roadmap to paying off student loans faster and smarter. No stress, just a clear plan.</p>
                         <span class="card-link">Get My Free Plan &rarr;</span>
                     </div>
                 </a>
                 
-                <a href="calculators.html" class="resource-card card-tall">
+                <!-- Learn: Guides -->
+                <a href="articles.html" class="resource-card card-learn">
+                    <div class="card-image-bg">
+                        <img src="https://images.pexels.com/photos/8199223/pexels-photo-8199223.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Student learning">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tag">Learn</div>
+                        <h3>Plain-English Guides</h3>
+                        <p>Complex Canadian topics explained simply for real life.</p>
+                        <span class="card-link">Read More &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Action: Calculators -->
+                <a href="calculators.html" class="resource-card card-tools">
                     <div class="card-image-bg">
                         <img src="https://images.pexels.com/photos/5948046/pexels-photo-5948046.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Student using tools">
                     </div>
                     <div class="card-content">
+                        <div class="card-tag">Action</div>
                         <h3>Run the Numbers</h3>
                         <p>Interactive tools built for the Canadian student system.</p>
                         <span class="card-link">Trial Calculators &rarr;</span>
                     </div>
                 </a>
 
-                <a href="quizzes.html" class="resource-card">
-                    <div class="card-image-bg">
-                        <img src="https://images.pexels.com/photos/5940841/pexels-photo-5940841.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Students together">
-                    </div>
-                    <div class="card-content">
-                        <h3>Knowledge Checks</h3>
-                        <p>Quick quizzes to test your financial IQ without the pressure.</p>
-                        <span class="card-link">Take Quiz &rarr;</span>
-                    </div>
-                </a>
-
-                <a href="budgeting-templates.html" class="resource-card">
+                <!-- Plan: Templates -->
+                <a href="budgeting-templates.html" class="resource-card card-plan">
                     <div class="card-image-bg">
                         <img src="https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Student workspace">
                     </div>
                     <div class="card-content">
+                        <div class="card-tag">Plan</div>
                         <h3>Budgeting Templates</h3>
                         <p>Beautiful Google Sheets and PDFs to track every dollar.</p>
-                        <span class="card-link">Download Fix &rarr;</span>
+                        <span class="card-link">Download Tools &rarr;</span>
                     </div>
                 </a>
 
-                <a href="articles.html" class="resource-card">
+                <!-- Check: Quizzes -->
+                <a href="quizzes.html" class="resource-card card-check">
                     <div class="card-image-bg">
-                        <img src="https://images.pexels.com/photos/8199223/pexels-photo-8199223.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Student learning">
+                        <img src="https://images.pexels.com/photos/5940841/pexels-photo-5940841.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Students together">
                     </div>
                     <div class="card-content">
-                        <h3>Plain-English Guides</h3>
-                        <p>Complex Canadian topics explained simply for real life.</p>
-                        <span class="card-link">Read More &rarr;</span>
+                        <div class="card-tag">Verify</div>
+                        <h3>Knowledge Checks</h3>
+                        <p>Quick quizzes to test your financial IQ.</p>
+                        <span class="card-link">Take Quiz &rarr;</span>
                     </div>
                 </a>
             </div>

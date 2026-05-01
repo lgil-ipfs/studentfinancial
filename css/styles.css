@@ -487,16 +487,16 @@ footer {
     font-weight: 600;
 }
 
-/* Bento Resources Grid */
+/* Dynamic Bento Resources Grid */
 .resources-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 300px;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(280px, auto);
     gap: 24px;
 }
 
 .resource-card {
-    background: #f0f7f5;
+    background: var(--white);
     border-radius: 32px;
     overflow: hidden;
     position: relative;
@@ -505,16 +505,55 @@ footer {
     padding: 40px;
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     border: 1px solid rgba(0,0,0,0.05);
+    text-decoration: none;
+    color: var(--text);
 }
 
-/* Bento Sizing */
-.card-large {
-    grid-column: span 2;
+/* Card Specific Sizing */
+.card-featured {
+    grid-column: span 8;
     grid-row: span 2;
+    background: #f0f7f5;
 }
 
-.card-tall {
+.card-learn {
+    grid-column: span 4;
     grid-row: span 2;
+    background: #fdf5e6; /* subtle amber */
+}
+
+.card-tools {
+    grid-column: span 4;
+    grid-row: span 1;
+    background: #f0f4f8; /* subtle blue */
+}
+
+.card-plan {
+    grid-column: span 4;
+    grid-row: span 1;
+    background: #fdf0f0; /* subtle coral */
+}
+
+.card-check {
+    grid-column: span 4;
+    grid-row: span 1;
+    background: #f5f0fd; /* subtle purple */
+}
+
+/* Tag styling */
+.card-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary);
+    margin-bottom: 20px;
+    width: fit-content;
 }
 
 /* Image Backgrounds */
@@ -525,7 +564,7 @@ footer {
     width: 100%;
     height: 100%;
     z-index: 1;
-    opacity: 0.1; /* Even more subtle for baseline readability */
+    opacity: 0.15;
     filter: grayscale(100%);
     transition: all 0.6s ease;
 }
@@ -536,51 +575,33 @@ footer {
     object-fit: cover;
 }
 
-/* Protective Overlay Gradient */
-.resource-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(240, 247, 245, 0.95) 0%, rgba(240, 247, 245, 0.6) 100%);
-    z-index: 2;
-    transition: opacity 0.5s ease;
-}
-
-
-.resource-card:hover .card-image-bg {
-    opacity: 0.05;
-    filter: grayscale(0%);
-    transform: scale(1.05);
-}
-
-/* Content layer stays above overlay */
+/* Content layer */
 .card-content {
     position: relative;
     z-index: 10;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 0 !important;
 }
 
 .card-content h3 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin-bottom: 16px;
-    line-height: 1.1;
+    line-height: 1.2;
     color: var(--primary);
 }
 
-.card-large h3 {
-    font-size: 3.5rem;
+.card-featured h3 {
+    font-size: 3.2rem;
 }
 
 .card-content p {
-    font-size: 1.15rem;
-    font-weight: 500; /* Increased weight for readability */
-    max-width: 320px;
+    font-size: 1.1rem;
     color: var(--text);
     line-height: 1.5;
+    margin-bottom: 24px;
+    max-width: 450px;
 }
 
 .card-link {
@@ -590,57 +611,71 @@ footer {
     gap: 8px;
     margin-top: auto;
     color: var(--primary);
+    transition: transform 0.3s ease;
 }
 
 .resource-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 30px 60px rgba(26, 107, 90, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(26, 107, 90, 0.15);
 }
 
-@media (max-width: 992px) {
+.resource-card:hover .card-image-bg {
+    opacity: 0.25;
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.resource-card:hover .card-link {
+    transform: translateX(5px);
+}
+
+/* Mobile & Tablet Friendly Rearrangement */
+@media (max-width: 1024px) {
     .resources-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: auto;
     }
-    .card-large, .card-tall {
+    .card-featured, .card-learn, .card-tools, .card-plan, .card-check {
         grid-column: span 1;
         grid-row: span 1;
     }
-    .card-content {
-        gap: 24px;
-    }
-    .card-image-bg {
-        display: none;
-    }
-    .resource-card {
-        min-height: 250px;
-    }
-}
-
-@media (max-width: 992px) {
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 60px;
-    }
-    .about-image-area {
-        order: -1;
-    }
-    .experience-badge {
-        left: 20px;
-    }
-    .resources-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .card-featured {
+        grid-column: span 2;
     }
 }
 
 @media (max-width: 768px) {
     .resources-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 30px;
+        margin: 0 -24px;
+        padding-left: 24px;
+        padding-right: 24px;
+        scrollbar-width: none; /* Hide scrollbar Firefox */
     }
-    .section-header-centered h2 {
+    
+    .resources-grid::-webkit-scrollbar {
+        display: none; /* Hide scrollbar Chrome/Safari */
+    }
+
+    .resource-card {
+        flex: 0 0 85%;
+        scroll-snap-align: center;
+        min-height: 400px;
+        padding: 32px;
+    }
+
+    .card-featured h3 {
         font-size: 2.2rem;
     }
+
+    .card-content h3 {
+        font-size: 1.8rem;
+    }
 }
+
 
 /* Counselling Section */
 .counselling-banner {
