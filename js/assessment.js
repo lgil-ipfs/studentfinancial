@@ -3,7 +3,7 @@
 
 const sections = [
   {
-    id: 'cashflow', title: 'Cash Flow & Budgeting', icon: '💰', color: '#1A6B5A',
+    id: 'cashflow', title: 'Cash Flow & Budgeting', color: '#1A6B5A',
     description: "We'll start by looking at how you manage your day-to-day money — the foundation of all financial wellness.",
     questions: [
       {
@@ -59,7 +59,7 @@ const sections = [
     ]
   },
   {
-    id: 'debt', title: 'Debt & Credit', icon: '💳', color: '#E8614A',
+    id: 'debt', title: 'Debt & Credit', color: '#E8614A',
     description: "Understanding your debt and credit health is critical for long-term financial stability. Let's see where you stand.",
     questions: [
       {
@@ -115,7 +115,7 @@ const sections = [
     ]
   },
   {
-    id: 'savings', title: 'Savings & Investing', icon: '📈', color: '#E8A020',
+    id: 'savings', title: 'Savings & Investing', color: '#E8A020',
     description: "Saving and investing are how you build wealth over time. We'll also assess your risk tolerance to identify your investor profile.",
     questions: [
       {
@@ -171,7 +171,7 @@ const sections = [
     ]
   },
   {
-    id: 'goals', title: 'Financial Goals & Planning', icon: '🎯', color: '#5a8fc4',
+    id: 'goals', title: 'Financial Goals & Planning', color: '#5a8fc4',
     description: "Good financial planning means setting clear goals and a roadmap to reach them. Let's explore how future-focused your financial thinking is.",
     questions: [
       {
@@ -227,7 +227,7 @@ const sections = [
     ]
   },
   {
-    id: 'mindset', title: 'Money Mindset & Mental Wellness', icon: '🧠', color: '#9b59b6',
+    id: 'mindset', title: 'Money Mindset & Mental Wellness', color: '#9b59b6',
     description: "Money stress is one of the biggest barriers to student success. This section explores your emotional relationship with money — just as important as the numbers.",
     questions: [
       {
@@ -380,7 +380,9 @@ function showScreen(id) {
   document.querySelectorAll('.assessment-screen').forEach(s => s.classList.remove('active'));
   const el = document.getElementById(id);
   if (el) el.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Scroll assessment anchor into view without jumping to page top
+  const anchor = document.getElementById('assessment-anchor');
+  if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ── Navigation ─────────────────────────────────────────────────────
@@ -471,7 +473,6 @@ function resetStepper() {
 function renderSectionIntro() {
   const s = sections[state.sectionIndex];
   document.getElementById('si-badge').textContent       = `Section ${state.sectionIndex + 1} of ${sections.length}`;
-  document.getElementById('si-icon').textContent        = s.icon;
   document.getElementById('si-title').textContent       = s.title;
   document.getElementById('si-description').textContent = s.description;
   updateStepper(state.sectionIndex);
@@ -485,7 +486,7 @@ function renderQuestion() {
   const section  = sections[si];
   const question = section.questions[qi];
 
-  document.getElementById('q-section-badge').textContent = `${section.icon} ${section.title}`;
+  document.getElementById('q-section-badge').textContent = section.title;
   document.getElementById('q-counter').textContent       = `Question ${qi + 1} of ${section.questions.length}`;
   document.getElementById('q-progress-fill').style.width = `${(qi / section.questions.length) * 100}%`;
   document.getElementById('q-text').textContent          = question.text;
@@ -546,7 +547,7 @@ function calculateScores() {
       return sum + (ans ? ans.score : 0);
     }, 0);
     const maxScore = section.questions.length * 4;
-    return { id: section.id, title: section.title, icon: section.icon, color: section.color, score, maxScore, percentage: Math.round((score / maxScore) * 100) };
+    return { id: section.id, title: section.title, color: section.color, score, maxScore, percentage: Math.round((score / maxScore) * 100) };
   });
 
   const totalScore = sectionScores.reduce((sum, s) => sum + s.score, 0);
@@ -627,7 +628,7 @@ function renderResults() {
     barsContainer.insertAdjacentHTML('beforeend', `
       <div class="section-bar-item">
         <div class="section-bar-header">
-          <span class="section-bar-name">${s.icon} ${s.title}</span>
+          <span class="section-bar-name">${s.title}</span>
           <span class="section-bar-score">${s.score}/${s.maxScore}</span>
         </div>
         <div class="section-bar-track">

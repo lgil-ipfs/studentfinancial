@@ -19,17 +19,17 @@
             <h1>Know Where You Stand.</h1>
             <p>A free, CFP-aligned assessment that evaluates your financial health across 5 key areas and gives you a personalized action plan — built specifically for Canadian students.</p>
             <div class="assessment-features">
-                <span class="assessment-feature-pill">📊 5 Key Areas</span>
-                <span class="assessment-feature-pill">🧠 25 Questions</span>
-                <span class="assessment-feature-pill">⏱ Under 7 Minutes</span>
-                <span class="assessment-feature-pill">🔒 100% Private</span>
-                <span class="assessment-feature-pill">🇨🇦 Canada-Focused</span>
+                <span class="assessment-feature-pill">5 Key Areas</span>
+                <span class="assessment-feature-pill">25 Questions</span>
+                <span class="assessment-feature-pill">Under 7 Minutes</span>
+                <span class="assessment-feature-pill">100% Private</span>
+                <span class="assessment-feature-pill">Canada-Focused</span>
             </div>
         </div>
     </header>
 
     <section class="section-padding" style="padding-top: 60px;">
-        <div class="container">
+        <div class="container" id="assessment-anchor">
 
             <!-- Section Progress Stepper -->
             <div class="section-progress" id="section-progress">
@@ -62,35 +62,29 @@
             <!-- ── Screen: Intro ── -->
             <div id="screen-intro" class="assessment-screen active">
                 <div class="intro-card">
-                    <span class="intro-icon">🌱</span>
                     <h2>Your Financial Wellness Assessment</h2>
                     <p>Answer 25 honest questions across 5 areas of your financial life. You'll receive your wellness score, investor profile, and a personalized action plan — all in under 7 minutes. No personal information required.</p>
 
                     <div class="intro-modules">
                         <div class="module-pill">
-                            <span class="module-icon">💰</span>
                             <p>Cash Flow &amp; Budgeting</p>
                         </div>
                         <div class="module-pill">
-                            <span class="module-icon">💳</span>
                             <p>Debt &amp; Credit Health</p>
                         </div>
                         <div class="module-pill">
-                            <span class="module-icon">📈</span>
                             <p>Savings &amp; Investing</p>
                         </div>
                         <div class="module-pill">
-                            <span class="module-icon">🎯</span>
                             <p>Financial Goals</p>
                         </div>
                         <div class="module-pill">
-                            <span class="module-icon">🧠</span>
                             <p>Money Mindset &amp; Mental Health</p>
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" id="start-btn" style="font-size: 1.1rem; padding: 18px 48px;">Start the Assessment →</button>
-                    <p class="intro-meta">Results stay in your browser · No account required</p>
+                    <button class="btn btn-primary" id="start-btn" style="font-size: 1.1rem; padding: 18px 48px;">Start the Assessment &rarr;</button>
+                    <p class="intro-meta">Results stay in your browser &middot; No account required</p>
                 </div>
             </div>
 
@@ -98,10 +92,9 @@
             <div id="screen-section-intro" class="assessment-screen">
                 <div class="section-intro-card">
                     <div class="section-badge" id="si-badge">Section 1 of 5</div>
-                    <span class="section-intro-icon" id="si-icon">💰</span>
                     <h2 id="si-title">Cash Flow &amp; Budgeting</h2>
                     <p id="si-description">We'll start by looking at how you manage your day-to-day money — the foundation of all financial wellness.</p>
-                    <button class="btn btn-primary" id="begin-section-btn" style="font-size: 1.05rem; padding: 16px 40px;">Begin This Section →</button>
+                    <button class="btn btn-primary" id="begin-section-btn" style="font-size: 1.05rem; padding: 16px 40px;">Begin This Section &rarr;</button>
                 </div>
             </div>
 
@@ -109,7 +102,7 @@
             <div id="screen-question" class="assessment-screen">
                 <div class="question-card">
                     <div class="question-meta">
-                        <span class="question-section-badge" id="q-section-badge">💰 Cash Flow &amp; Budgeting</span>
+                        <span class="question-section-badge" id="q-section-badge">Cash Flow &amp; Budgeting</span>
                         <span class="question-counter" id="q-counter">Question 1 of 5</span>
                     </div>
                     <div class="question-progress-bar">
@@ -118,8 +111,8 @@
                     <p class="question-text" id="q-text">Loading question...</p>
                     <div class="options-list" id="q-options"></div>
                     <div class="question-nav">
-                        <button class="btn-nav btn-back" id="prev-btn">← Back</button>
-                        <button class="btn-nav btn-next" id="next-btn">Continue →</button>
+                        <button class="btn-nav btn-back" id="prev-btn">&larr; Back</button>
+                        <button class="btn-nav btn-next" id="next-btn">Continue &rarr;</button>
                     </div>
                 </div>
             </div>
@@ -173,7 +166,6 @@
 
                 <!-- Money Mindset Card -->
                 <div class="mindset-wellbeing-card">
-                    <span class="mindset-icon">🧠</span>
                     <div class="mindset-level-badge" id="mindset-level-badge">Money Mindset</div>
                     <h3>Your Money Mindset &amp; Mental Wellness</h3>
                     <div class="mindset-score-bar">

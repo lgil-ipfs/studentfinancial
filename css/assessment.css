@@ -172,18 +172,13 @@
 .module-pill {
     background: var(--bg);
     border-radius: 16px;
-    padding: 20px 10px;
+    padding: 16px 12px;
     text-align: center;
-}
-
-.module-pill .module-icon {
-    font-size: 1.6rem;
-    margin-bottom: 8px;
-    display: block;
+    border: 1px solid rgba(26, 107, 90, 0.08);
 }
 
 .module-pill p {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--primary);
     margin: 0;
