@@ -309,24 +309,24 @@ const wellnessLevels = [
 
 const investorTypes = [
   {
-    min: 0, max: 4, label: 'Conservative', riskWidth: '12%',
-    description: "You prioritize protecting what you have above all else. This is a valid and often wise approach — especially when you may need your money soon or when financial stress is high. Over time, consider adding modest growth exposure to stay ahead of inflation."
+    min: 0, max: 4, label: 'The Protector', riskWidth: '12%',
+    description: "Above all else, you want to know your money is safe. You'd rather accept lower returns than risk losing what you've worked hard to save. This mindset makes a lot of sense — especially when you're still building financial stability and may need access to your money on short notice. As your foundation grows stronger, a licensed financial advisor can help you explore whether any growth-oriented options fit your situation."
   },
   {
-    min: 5, max: 8, label: 'Moderate-Conservative', riskWidth: '32%',
-    description: "You want some growth but not at the cost of sleepless nights. A portfolio weighted toward fixed income (bonds, GICs) with a smaller equity component suits you well. You're building wisely — safety first, then gradual, steady growth."
+    min: 5, max: 8, label: 'The Careful Builder', riskWidth: '32%',
+    description: "You're cautious but curious — open to some growth, but not at the expense of your peace of mind. You prefer slow and steady over exciting but unpredictable. You make deliberate decisions and don't take financial risks lightly. That thoughtfulness is genuinely valuable. A licensed financial professional can help you find the right balance between protecting and growing your money."
   },
   {
-    min: 9, max: 11, label: 'Balanced', riskWidth: '54%',
-    description: "You strike a healthy balance between growth and protection. You understand that markets move up and down and have a realistic long-term perspective. A classic 60/40 portfolio (equities/fixed income) or a balanced ETF may align well with your temperament and goals."
+    min: 9, max: 11, label: 'The Steady Planner', riskWidth: '54%',
+    description: "You think long-term and accept that some ups and downs come with the territory. You don't panic when things shift — you stay the course. This calm, measured approach is one of the most powerful qualities a person can develop around money. You're well-positioned to benefit from working with a licensed financial advisor to turn that mindset into a concrete, personalized plan."
   },
   {
-    min: 12, max: 14, label: 'Growth', riskWidth: '76%',
-    description: "You're growth-focused and comfortable with short-term market volatility in pursuit of stronger long-term returns. A portfolio weighted toward equities — including diversified index funds and growth ETFs — suits your profile. You have the mindset to build serious long-term wealth."
+    min: 12, max: 14, label: 'The Growth Seeker', riskWidth: '76%',
+    description: "You're future-focused and willing to accept short-term discomfort in exchange for stronger long-term results. You understand that building real wealth takes patience and discipline — you're not checking prices daily and you trust the process. Working with a licensed financial professional can help you make sure your strategy genuinely matches your risk tolerance, timeline, and life goals."
   },
   {
-    min: 15, max: 16, label: 'Aggressive Growth', riskWidth: '96%',
-    description: "You're a high-conviction, long-term investor with a high risk tolerance. You're not fazed by short-term market swings because you understand they're the price of admission for maximum long-term returns. Equity-heavy portfolios — global index funds, growth ETFs — align with your profile. Ensure your time horizon supports this approach."
+    min: 15, max: 16, label: 'The Long-Game Player', riskWidth: '96%',
+    description: "You think in decades, not months. Market swings don't scare you — you see them as part of the journey, not a reason to change course. Your patience and high comfort with uncertainty are potentially powerful financial traits. That said, this approach needs to genuinely match your real time horizon and financial situation — a licensed advisor can help you confirm it does and build accordingly."
   }
 ];
 
@@ -344,7 +344,7 @@ const tipLibrary = {
   savings: {
     low:  { sectionLabel: 'Savings & Investing', title: 'Open a TFSA This Week', body: "A TFSA is the single best savings tool for most Canadian students. Every year you don't use your contribution room is an opportunity cost you can't recover.", link: 'article-tfsa-vs-rrsp.html', linkText: 'TFSA vs RRSP Explained' },
     mid:  { sectionLabel: 'Savings & Investing', title: 'Understand the Rule of 72', body: "Divide 72 by your investment return rate to see how many years it takes to double your money. Starting early — even with small amounts — is the entire game.", link: 'article-rule-of-72.html', linkText: 'Learn the Rule of 72' },
-    high: { sectionLabel: 'Savings & Investing', title: 'Optimize Your Investment Strategy', body: "You're invested — now optimize. Low-cost index ETFs, TFSA maximization, and RRSP contributions as your income rises are your next moves.", link: 'calc-tfsa-growth.html', linkText: 'See Your TFSA Growth' }
+    high: { sectionLabel: 'Savings & Investing', title: 'Make the Most of Your Registered Accounts', body: "You're building good savings habits — now make sure you're using registered Canadian accounts (TFSA, RRSP) to their full advantage. A licensed financial advisor can help you decide what to do with the money once it's in there.", link: 'calc-tfsa-growth.html', linkText: 'See Your TFSA Growth' }
   },
   goals: {
     low:  { sectionLabel: 'Financial Goals', title: 'Set One Clear Financial Goal', body: "Pick one goal — just one — and write it down with a dollar amount and a date. 'Pay off $4,200 by December 2026.' That specificity changes everything.", link: 'debt-repayment.html', linkText: 'Build Your Debt Plan' },
@@ -620,6 +620,8 @@ function renderResults() {
   document.getElementById('investor-type-name').textContent   = investor.label;
   document.getElementById('investor-description').textContent = investor.description;
   document.getElementById('risk-meter-fill').style.width = '0%';
+  document.getElementById('investor-edu-disclaimer').textContent =
+    'Any investment-related terms used here are for general educational awareness only and do not constitute investment advice. Please consult a licensed financial advisor or portfolio manager before making any investment decisions.';
 
   // Section bars
   const barsContainer = document.getElementById('section-bars');
