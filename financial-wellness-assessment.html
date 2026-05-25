@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Wellness Assessment | StudentFinancial.ca</title>
+    <meta name="description" content="A free, CFP-aligned financial wellness assessment for Canadian students. Discover your wellness score, investor profile, and personalized action plan in under 7 minutes.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/assessment.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <header class="assessment-hero">
+        <div class="container">
+            <span class="subheading">Financial Wellness Assessment</span>
+            <h1>Know Where You Stand.</h1>
+            <p>A free, CFP-aligned assessment that evaluates your financial health across 5 key areas and gives you a personalized action plan — built specifically for Canadian students.</p>
+            <div class="assessment-features">
+                <span class="assessment-feature-pill">📊 5 Key Areas</span>
+                <span class="assessment-feature-pill">🧠 25 Questions</span>
+                <span class="assessment-feature-pill">⏱ Under 7 Minutes</span>
+                <span class="assessment-feature-pill">🔒 100% Private</span>
+                <span class="assessment-feature-pill">🇨🇦 Canada-Focused</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="section-padding" style="padding-top: 60px;">
+        <div class="container">
+
+            <!-- Section Progress Stepper -->
+            <div class="section-progress" id="section-progress">
+                <div class="step-item">
+                    <div class="step-circle" id="step-0">1</div>
+                    <div class="step-label" id="step-label-0">Cash Flow</div>
+                </div>
+                <div class="step-connector" id="connector-0"></div>
+                <div class="step-item">
+                    <div class="step-circle" id="step-1">2</div>
+                    <div class="step-label" id="step-label-1">Debt &amp; Credit</div>
+                </div>
+                <div class="step-connector" id="connector-1"></div>
+                <div class="step-item">
+                    <div class="step-circle" id="step-2">3</div>
+                    <div class="step-label" id="step-label-2">Savings</div>
+                </div>
+                <div class="step-connector" id="connector-2"></div>
+                <div class="step-item">
+                    <div class="step-circle" id="step-3">4</div>
+                    <div class="step-label" id="step-label-3">Goals</div>
+                </div>
+                <div class="step-connector" id="connector-3"></div>
+                <div class="step-item">
+                    <div class="step-circle" id="step-4">5</div>
+                    <div class="step-label" id="step-label-4">Mindset</div>
+                </div>
+            </div>
+
+            <!-- ── Screen: Intro ── -->
+            <div id="screen-intro" class="assessment-screen active">
+                <div class="intro-card">
+                    <span class="intro-icon">🌱</span>
+                    <h2>Your Financial Wellness Assessment</h2>
+                    <p>Answer 25 honest questions across 5 areas of your financial life. You'll receive your wellness score, investor profile, and a personalized action plan — all in under 7 minutes. No personal information required.</p>
+
+                    <div class="intro-modules">
+                        <div class="module-pill">
+                            <span class="module-icon">💰</span>
+                            <p>Cash Flow &amp; Budgeting</p>
+                        </div>
+                        <div class="module-pill">
+                            <span class="module-icon">💳</span>
+                            <p>Debt &amp; Credit Health</p>
+                        </div>
+                        <div class="module-pill">
+                            <span class="module-icon">📈</span>
+                            <p>Savings &amp; Investing</p>
+                        </div>
+                        <div class="module-pill">
+                            <span class="module-icon">🎯</span>
+                            <p>Financial Goals</p>
+                        </div>
+                        <div class="module-pill">
+                            <span class="module-icon">🧠</span>
+                            <p>Money Mindset &amp; Mental Health</p>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="start-btn" style="font-size: 1.1rem; padding: 18px 48px;">Start the Assessment →</button>
+                    <p class="intro-meta">Results stay in your browser · No account required</p>
+                </div>
+            </div>
+
+            <!-- ── Screen: Section Intro ── -->
+            <div id="screen-section-intro" class="assessment-screen">
+                <div class="section-intro-card">
+                    <div class="section-badge" id="si-badge">Section 1 of 5</div>
+                    <span class="section-intro-icon" id="si-icon">💰</span>
+                    <h2 id="si-title">Cash Flow &amp; Budgeting</h2>
+                    <p id="si-description">We'll start by looking at how you manage your day-to-day money — the foundation of all financial wellness.</p>
+                    <button class="btn btn-primary" id="begin-section-btn" style="font-size: 1.05rem; padding: 16px 40px;">Begin This Section →</button>
+                </div>
+            </div>
+
+            <!-- ── Screen: Question ── -->
+            <div id="screen-question" class="assessment-screen">
+                <div class="question-card">
+                    <div class="question-meta">
+                        <span class="question-section-badge" id="q-section-badge">💰 Cash Flow &amp; Budgeting</span>
+                        <span class="question-counter" id="q-counter">Question 1 of 5</span>
+                    </div>
+                    <div class="question-progress-bar">
+                        <div class="question-progress-fill" id="q-progress-fill" style="width: 0%;"></div>
+                    </div>
+                    <p class="question-text" id="q-text">Loading question...</p>
+                    <div class="options-list" id="q-options"></div>
+                    <div class="question-nav">
+                        <button class="btn-nav btn-back" id="prev-btn">← Back</button>
+                        <button class="btn-nav btn-next" id="next-btn">Continue →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Screen: Results ── -->
+            <div id="screen-results" class="assessment-screen">
+
+                <div class="results-header">
+                    <span class="subheading">Your Results</span>
+                    <h2 id="results-headline">Your Financial Wellness Results</h2>
+                    <p>Based on your answers across all 5 areas of financial wellness.</p>
+                </div>
+
+                <!-- Score Ring -->
+                <div class="results-score-section">
+                    <div class="score-ring-container">
+                        <div class="score-ring">
+                            <svg viewBox="0 0 180 180" width="180" height="180">
+                                <circle class="score-ring-bg" cx="90" cy="90" r="80"/>
+                                <circle class="score-ring-fill" id="score-ring-fill" cx="90" cy="90" r="80"/>
+                            </svg>
+                            <div class="score-number" id="score-number">0</div>
+                        </div>
+                        <div class="wellness-badge" id="wellness-badge">Calculating...</div>
+                        <p style="font-size:0.88rem; color:var(--muted); margin-top:8px;">out of 100</p>
+                    </div>
+                </div>
+
+                <!-- Investor Profile + Section Breakdown -->
+                <div class="results-grid">
+
+                    <div class="investor-profile-card">
+                        <div class="profile-tag">Your Investor Profile</div>
+                        <span class="investor-type-name" id="investor-type-name">Balanced</span>
+                        <p id="investor-description">Loading profile...</p>
+                        <div class="risk-meter">
+                            <div class="risk-meter-fill" id="risk-meter-fill"></div>
+                        </div>
+                        <div class="risk-labels">
+                            <span>Conservative</span>
+                            <span>Aggressive</span>
+                        </div>
+                    </div>
+
+                    <div class="section-breakdown-card">
+                        <h3>Your Score by Area</h3>
+                        <div id="section-bars"></div>
+                    </div>
+
+                </div>
+
+                <!-- Money Mindset Card -->
+                <div class="mindset-wellbeing-card">
+                    <span class="mindset-icon">🧠</span>
+                    <div class="mindset-level-badge" id="mindset-level-badge">Money Mindset</div>
+                    <h3>Your Money Mindset &amp; Mental Wellness</h3>
+                    <div class="mindset-score-bar">
+                        <div class="mindset-score-fill" id="mindset-score-fill"></div>
+                    </div>
+                    <p id="mindset-description">Loading mindset analysis...</p>
+                </div>
+
+                <!-- Personalized Action Plan -->
+                <div class="action-plan-section">
+                    <h3>Your Personalized Action Plan</h3>
+                    <p>Based on your results, here are the highest-impact steps you can take right now:</p>
+                    <div class="tips-grid" id="tips-grid"></div>
+                </div>
+
+                <!-- Wellness Level Box -->
+                <div class="wellness-level-box">
+                    <h3 id="wellness-level-title">Financial Wellness Level</h3>
+                    <p id="wellness-description"></p>
+                </div>
+
+                <!-- CTA -->
+                <div class="results-cta">
+                    <h3>Ready to take the next step?</h3>
+                    <p>Our licensed advisors can walk you through your results and build a personalized plan — completely free, no pressure, no judgment.</p>
+                    <div class="results-cta-btns">
+                        <a href="https://cal.com/student-financial-support/30-mins" target="_blank" class="btn btn-secondary">Book a Free Session</a>
+                        <a href="articles.html" class="btn-white-outline">Explore Resources</a>
+                        <button class="btn-white-outline" id="retake-btn">Retake Assessment</button>
+                    </div>
+                </div>
+
+                <p class="assessment-disclaimer">This assessment is for educational purposes only and does not constitute financial, investment, or legal advice. Results are based on your self-reported answers and should not replace personalized guidance from a licensed financial professional.</p>
+
+            </div>
+            <!-- End Results Screen -->
+
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/assessment.js"></script>
+
+</body>
+</html>
