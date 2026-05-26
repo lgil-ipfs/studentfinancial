@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TFSA Growth Projector | StudentFinancial.ca</title>
+    <meta name="description" content="See how your TFSA contributions grow tax-free over time. Visualize the power of compound interest with a clear breakdown of contributions vs. growth.">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/calculators.css">
     <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
@@ -12,45 +13,97 @@
 <body>
     <div id="header-placeholder"></div>
 
-    <section class="section-padding">
+    <header class="calc-hero">
         <div class="container">
-            <div style="max-width: 900px; margin: 0 auto;">
-                <a href="calculators.html" style="display: inline-block; margin-bottom: 32px; font-weight: 600; color: var(--primary);">← Back to Tools</a>
-                
-                <h1 style="font-size: 2.5rem; color: var(--primary); font-family: 'Fraunces', serif; margin-bottom: 12px;">TFSA Growth Projector</h1>
-                <p style="color: var(--text); font-size: 1.1rem; margin-bottom: 40px;">See the power of tax-free compound interest over time.</p>
+            <a href="calculators.html" class="back-link">&larr; Back to Calculators</a>
+            <h1>TFSA Growth Projector</h1>
+            <p class="calc-hero-desc">See how tax-free compounding turns small monthly contributions into a significant nest egg — with a year-by-year breakdown.</p>
+            <div class="calc-hero-pills">
+                <span class="calc-hero-pill">Monthly Compounding</span>
+                <span class="calc-hero-pill">Contributions vs. Growth</span>
+                <span class="calc-hero-pill">2025 Limit: $7,000/yr</span>
+            </div>
+        </div>
+    </header>
 
-                <div class="calc-card active" style="display: block;">
-                    <div class="calc-grid">
-                        <div class="calc-inputs">
-                            <div class="form-group">
-                                <label>Monthly Contribution ($)</label>
-                                <input type="number" id="tfsa-monthly" value="200">
+    <section class="calc-body">
+        <div class="container">
+            <div class="calc-layout">
+
+                <!-- INPUTS -->
+                <div>
+                    <div class="calc-panel">
+                        <div class="calc-panel-title">Your TFSA Inputs</div>
+
+                        <div class="field-group">
+                            <label>Monthly Contribution ($)</label>
+                            <input type="number" id="tfsa-monthly" value="200" min="0" oninput="calcTFSA()">
+                        </div>
+                        <div class="field-group">
+                            <label>Expected Annual Return (%)</label>
+                            <input type="number" id="tfsa-return" value="6" min="0" max="30" step="0.5" oninput="calcTFSA()">
+                        </div>
+                        <div class="field-group">
+                            <label>Years to Save</label>
+                            <input type="number" id="tfsa-years" value="10" min="1" max="50" oninput="calcTFSA()">
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>The TFSA Advantage</h3>
+                        <p>Every dollar you earn inside a TFSA — whether from interest, dividends, or capital gains — is completely tax-free. In a regular account, you'd pay tax on that growth each year. Over 10–20 years, this difference compounds into tens of thousands of dollars.</p>
+                        <ul style="margin-top: 12px;">
+                            <li><strong>2025 annual TFSA limit:</strong> $7,000 ($583/month)</li>
+                            <li><strong>Cumulative room since 2009</strong> (if 18+ in 2009): $95,000</li>
+                            <li><strong>You must be 18+</strong> and a Canadian resident to contribute</li>
+                            <li>Withdrawals are added back to your room the following year</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- RESULTS -->
+                <div>
+                    <div class="calc-panel">
+                        <div class="calc-panel-title">Projected Growth</div>
+
+                        <div class="stat-grid">
+                            <div class="stat-block" style="grid-column: span 2;">
+                                <div class="stat-label">Projected Balance</div>
+                                <div class="stat-value" id="tfsa-balance" style="font-size: 2.2rem;">—</div>
                             </div>
-                            <div class="form-group">
-                                <label>Expected Return (%)</label>
-                                <input type="number" id="tfsa-return" value="6">
+                            <div class="stat-block">
+                                <div class="stat-label">Total Contributed</div>
+                                <div class="stat-value" id="tfsa-contributions">—</div>
                             </div>
-                            <div class="form-group">
-                                <label>Years to Save</label>
-                                <input type="number" id="tfsa-years" value="10">
+                            <div class="stat-block accent">
+                                <div class="stat-label">Tax-Free Growth</div>
+                                <div class="stat-value accent" id="tfsa-growth">—</div>
                             </div>
                         </div>
-                        <div class="calc-results">
-                            <div class="result-item" style="margin-bottom: 24px;">
-                                <span>Projected Balance:</span>
-                                <span class="result-value" id="tfsa-res" style="font-size: 1.8rem;">$32,775.00</span>
+
+                        <div id="tfsa-limit-warn" class="warn-banner" style="display:none;">
+                            Your monthly contribution exceeds the 2025 TFSA limit of $583/month ($7,000/year). Make sure you have enough unused room to avoid over-contribution penalties.
+                        </div>
+
+                        <div class="chart-wrap">
+                            <canvas id="tfsaChart" height="280"></canvas>
+                            <div class="chart-legend">
+                                <div class="legend-item">
+                                    <div class="legend-dot" style="background: rgba(26,107,90,0.5);"></div>
+                                    Your contributions
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-dot" style="background: rgba(26,107,90,0.9);"></div>
+                                    Tax-free growth
+                                </div>
                             </div>
-                            <canvas id="tfsaChart" height="300"></canvas>
                         </div>
                     </div>
                 </div>
 
-                <div style="margin-top: 48px;">
-                    <h3>The TFSA Edge</h3>
-                    <p>Unlike a standard savings account, anything you earn inside a Tax-Free Savings Account (TFSA) is 100% yours to keep. You don't pay tax on the interest, dividends, or capital gains. Over 10-20 years, this tax savings can amount to tens of thousands of dollars.</p>
-                </div>
             </div>
+
+            <p class="calc-disclaimer">This calculator uses monthly compounding. Returns are hypothetical — past investment returns do not guarantee future results. TFSA contribution limits are set by the CRA and subject to change. This is for educational purposes only and does not constitute financial advice.</p>
         </div>
     </section>
 
@@ -58,7 +111,85 @@
 
     <script src="js/components.js"></script>
     <script src="js/mobile-menu.js"></script>
-    <script src="js/calculators.js"></script>
     <script src="js/term-popups.js"></script>
+    <script>
+        const fmt = n => new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 0 }).format(n);
+
+        let tfsaChart;
+
+        function calcTFSA() {
+            const monthly = parseFloat(document.getElementById('tfsa-monthly').value) || 0;
+            const rate    = (parseFloat(document.getElementById('tfsa-return').value) || 0) / 100 / 12;
+            const years   = parseInt(document.getElementById('tfsa-years').value) || 0;
+
+            // Warn if over annual limit
+            document.getElementById('tfsa-limit-warn').style.display = monthly > 583.33 ? 'block' : 'none';
+
+            let balance = 0;
+            const contribData = [];
+            const growthData  = [];
+            const labels      = [];
+
+            for (let y = 1; y <= years; y++) {
+                for (let m = 0; m < 12; m++) {
+                    balance = (balance + monthly) * (1 + rate);
+                }
+                const totalContrib = monthly * 12 * y;
+                contribData.push(totalContrib);
+                growthData.push(Math.max(0, balance - totalContrib));
+                labels.push('Yr ' + y);
+            }
+
+            const totalContributions = monthly * 12 * years;
+            const totalGrowth = Math.max(0, balance - totalContributions);
+
+            document.getElementById('tfsa-balance').textContent       = fmt(balance);
+            document.getElementById('tfsa-contributions').textContent = fmt(totalContributions);
+            document.getElementById('tfsa-growth').textContent        = fmt(totalGrowth);
+
+            const ctx = document.getElementById('tfsaChart').getContext('2d');
+            if (tfsaChart) tfsaChart.destroy();
+            tfsaChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [
+                        {
+                            label: 'Contributions',
+                            data: contribData,
+                            backgroundColor: 'rgba(26,107,90,0.45)',
+                            stack: 'stack'
+                        },
+                        {
+                            label: 'Tax-Free Growth',
+                            data: growthData,
+                            backgroundColor: 'rgba(26,107,90,0.85)',
+                            stack: 'stack'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: c => ' ' + c.dataset.label + ': ' + fmt(c.parsed.y)
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { stacked: true },
+                        y: {
+                            stacked: true,
+                            ticks: { callback: v => '$' + (v >= 1000 ? (v / 1000).toFixed(0) + 'k' : v) }
+                        }
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('load', calcTFSA);
+    </script>
 </body>
 </html>

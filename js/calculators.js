@@ -142,7 +142,7 @@ const calcNetWorth = () => {
 const calcCC = () => {
     const balance = parseFloat(document.getElementById('cc-balance').value) || 0;
     const rate = (parseFloat(document.getElementById('cc-rate').value) || 0) / 100 / 12;
-    const minPayRate = 0.03; // Approx 3%
+    const minPayRate = 0.02; // Canadian standard: 2% of balance
     
     let currentBalance = balance;
     let totalInterest = 0;

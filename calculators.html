@@ -3,88 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Tools & Calculators | StudentFinancial.ca</title>
+    <title>Free Financial Calculators | StudentFinancial.ca</title>
+    <meta name="description" content="Free financial calculators built for Canadian students. Model your student loans, budget, TFSA growth, credit card costs, net worth, and debt repayment strategies.">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/calculators.css">
     <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-    <style>
-        .calc-hub-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 32px;
-            margin-top: 48px;
-        }
-
-        .calc-tile {
-            background: var(--white);
-            padding: 40px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            border-top: 5px solid var(--primary);
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .calc-tile:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .calc-tile .category {
-            font-size: 0.8rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--primary);
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .calc-tile h3 {
-            font-size: 1.5rem;
-            margin-bottom: 16px;
-            color: var(--primary);
-            line-height: 1.3;
-        }
-
-        .calc-tile p {
-            color: var(--text);
-            margin-bottom: 32px;
-            flex-grow: 1;
-            line-height: 1.6;
-        }
-
-        .calc-tile .action-link {
-            font-weight: 700;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        @media (max-width: 768px) {
-            .calc-hub-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
     <header class="page-header">
         <div class="container">
-            <h1>Free Financial Tools.</h1>
-            <p>Built specifically for the Canadian student financial system. Run your numbers and take control.</p>
+            <span class="subheading" style="color: rgba(255,255,255,0.75);">Tools</span>
+            <h1>Free Financial Calculators.</h1>
+            <p>Built specifically for the Canadian student financial system. Run your numbers, know your options.</p>
         </div>
     </header>
 
     <section class="section-padding">
         <div class="container">
-            
+
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">All Tools</button>
                 <button class="filter-btn" data-filter="loans">Loans</button>
@@ -94,53 +32,49 @@
             </div>
 
             <div class="calc-hub-grid" id="tools-grid">
-                <!-- 1 -->
+
                 <a href="calc-student-loan.html" class="calc-tile" data-category="loans">
                     <span class="category">Student Loans</span>
                     <h3>Canadian Student Loan Repayment Tool</h3>
-                    <p>The most advanced tool for Canadian students. Model your grace period, RAP eligibility, and provincial interest rates.</p>
-                    <span class="action-link">Use Calculator →</span>
+                    <p>The most advanced tool for Canadian students. Model your grace period, RAP eligibility, and provincial interest rates — updated with live Bank of Canada prime rate.</p>
+                    <span class="action-link">Use Calculator &rarr;</span>
                 </a>
 
-                <!-- 2 -->
                 <a href="calc-budget.html" class="calc-tile" data-category="budgeting">
                     <span class="category">Budgeting</span>
-                    <h3>Monthly Budget Checker</h3>
-                    <p>A quick way to see if your monthly income covers your student life. Spot surpluses or deficits before they happen.</p>
-                    <span class="action-link">Use Calculator →</span>
+                    <h3>Monthly Student Budget Builder</h3>
+                    <p>Enter your income and expenses to see your monthly surplus or deficit, compare against student benchmarks, and get smart money insights.</p>
+                    <span class="action-link">Use Calculator &rarr;</span>
                 </a>
 
-                <!-- 3 -->
                 <a href="calc-cc-danger.html" class="calc-tile" data-category="credit">
                     <span class="category">Credit</span>
-                    <h3>Credit Card "Minimum" Danger</h3>
-                    <p>See exactly how much a $2,000 balance actually costs if you only pay the minimum. A must-use before your first card.</p>
-                    <span class="action-link">Use Calculator →</span>
+                    <h3>Credit Card Minimum Payment Danger</h3>
+                    <p>See exactly how long it takes and how much you actually pay when you only make the minimum payment. A must-see before carrying a balance.</p>
+                    <span class="action-link">Use Calculator &rarr;</span>
                 </a>
 
-                <!-- 4 -->
                 <a href="calc-tfsa-growth.html" class="calc-tile" data-category="saving">
                     <span class="category">Saving</span>
                     <h3>TFSA Growth Projector</h3>
-                    <p>Visualize how small, regular contributions can grow into a significant tax-free safety net over your degree and beyond.</p>
-                    <span class="action-link">Use Calculator →</span>
+                    <p>Visualize how small, regular tax-free contributions grow into a significant savings balance over time — with a breakdown of contributions vs. compound growth.</p>
+                    <span class="action-link">Use Calculator &rarr;</span>
                 </a>
 
-                <!-- 5 -->
                 <a href="calc-net-worth.html" class="calc-tile" data-category="loans">
                     <span class="category">Net Worth</span>
                     <h3>Student Net Worth Tracker</h3>
-                    <p>Track your assets vs. liabilities. It's okay to start negative—the goal is to see the trend move upward.</p>
-                    <span class="action-link">Use Calculator →</span>
+                    <p>Track what you own versus what you owe. It's completely normal to start negative as a student — the goal is to watch the trend move upward.</p>
+                    <span class="action-link">Use Calculator &rarr;</span>
                 </a>
 
-                <!-- 6 -->
                 <a href="calc-debt-compare.html" class="calc-tile" data-category="loans">
-                    <span class="category">Debt</span>
-                    <h3>Avalanche vs. Snowball</h3>
-                    <p>Have multiple debts? Compare the two most popular repayment strategies to see which saves you the most money.</p>
-                    <span class="action-link">Use Calculator →</span>
+                    <span class="category">Debt Strategy</span>
+                    <h3>Avalanche vs. Snowball Comparison</h3>
+                    <p>Have multiple debts? Enter them all and compare the two most popular repayment strategies side by side — real numbers, not estimates.</p>
+                    <span class="action-link">Use Calculator &rarr;</span>
                 </a>
+
             </div>
 
         </div>
@@ -152,25 +86,17 @@
     <script src="js/mobile-menu.js"></script>
     <script src="js/term-popups.js"></script>
     <script>
-        // Filtering logic
         const filterBtns = document.querySelectorAll('.filter-btn');
         const tools = document.querySelectorAll('.calc-tile');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Update active button
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-
                 const filter = btn.getAttribute('data-filter');
-
                 tools.forEach(tool => {
-                    const category = tool.getAttribute('data-category');
-                    if (filter === 'all' || category === filter) {
-                        tool.style.display = 'flex';
-                    } else {
-                        tool.style.display = 'none';
-                    }
+                    const cat = tool.getAttribute('data-category');
+                    tool.style.display = (filter === 'all' || cat === filter) ? 'flex' : 'none';
                 });
             });
         });

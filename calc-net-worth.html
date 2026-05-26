@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Net Worth Tracker | StudentFinancial.ca</title>
+    <meta name="description" content="Track your assets vs. liabilities. Negative net worth is normal for students — the goal is watching it move in the right direction.">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/calculators.css">
     <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
@@ -12,41 +13,119 @@
 <body>
     <div id="header-placeholder"></div>
 
-    <section class="section-padding">
+    <header class="calc-hero">
         <div class="container">
-            <div style="max-width: 900px; margin: 0 auto;">
-                <a href="calculators.html" style="display: inline-block; margin-bottom: 32px; font-weight: 600; color: var(--primary);">← Back to Tools</a>
-                
-                <h1 style="font-size: 2.5rem; color: var(--primary); font-family: 'Fraunces', serif; margin-bottom: 12px;">Student Net Worth Tracker</h1>
-                <p style="color: var(--text); font-size: 1.1rem; margin-bottom: 40px;">Track the big picture: what you own vs. what you owe.</p>
+            <a href="calculators.html" class="back-link">&larr; Back to Calculators</a>
+            <h1>Student Net Worth Tracker</h1>
+            <p class="calc-hero-desc">Track what you own versus what you owe. It is completely normal to start negative — the goal is watching the trend move upward.</p>
+            <div class="calc-hero-pills">
+                <span class="calc-hero-pill">Assets vs. Liabilities</span>
+                <span class="calc-hero-pill">Negative is Normal</span>
+                <span class="calc-hero-pill">Track Your Progress</span>
+            </div>
+        </div>
+    </header>
 
-                <div class="calc-card active" style="display: block;">
-                    <div class="calc-grid">
-                        <div class="calc-inputs">
-                            <div class="form-group">
-                                <label>Total Assets (Savings, Car, etc) ($)</label>
-                                <input type="number" id="assets-val" value="5000">
-                            </div>
-                            <div class="form-group">
-                                <label>Total Liabilities (Debt, Loans) ($)</label>
-                                <input type="number" id="liabilities-val" value="30000">
-                            </div>
+    <section class="calc-body">
+        <div class="container">
+            <div class="calc-layout">
+
+                <!-- INPUTS -->
+                <div>
+                    <div class="calc-panel">
+                        <div class="calc-panel-title">Assets (What You Own)</div>
+
+                        <div class="field-group">
+                            <label>Cash, Chequing &amp; Savings ($)</label>
+                            <input type="number" id="a-cash" value="1500" min="0" oninput="calcNW()">
                         </div>
-                        <div class="calc-results">
-                            <div class="result-item" style="margin-bottom: 24px;">
-                                <span>Your Net Worth:</span>
-                                <span class="result-value" id="networth-res" style="font-size: 1.8rem;">-$25,000.00</span>
-                            </div>
-                            <canvas id="nwChart" height="250"></canvas>
+                        <div class="field-group">
+                            <label>TFSA / RRSP Balance ($)</label>
+                            <input type="number" id="a-tfsa" value="0" min="0" oninput="calcNW()">
+                        </div>
+                        <div class="field-group">
+                            <label>Investments (stocks, ETFs, crypto) ($)</label>
+                            <input type="number" id="a-invest" value="0" min="0" oninput="calcNW()">
+                        </div>
+                        <div class="field-group">
+                            <label>Vehicle Value ($)</label>
+                            <input type="number" id="a-vehicle" value="0" min="0" oninput="calcNW()">
+                        </div>
+                        <div class="field-group">
+                            <label>Other Assets ($)</label>
+                            <input type="number" id="a-other" value="0" min="0" oninput="calcNW()">
+                        </div>
+                    </div>
+
+                    <div class="calc-panel">
+                        <div class="calc-panel-title">Liabilities (What You Owe)</div>
+
+                        <div class="field-group">
+                            <label>Student Loans (total outstanding) ($)</label>
+                            <input type="number" id="l-student" value="28000" min="0" oninput="calcNW()">
+                        </div>
+                        <div class="field-group">
+                            <label>Credit Card Balance ($)</label>
+                            <input type="number" id="l-cc" value="500" min="0" oninput="calcNW()">
+                        </div>
+                        <div class="field-group">
+                            <label>Line of Credit / Personal Loan ($)</label>
+                            <input type="number" id="l-loc" value="0" min="0" oninput="calcNW()">
+                        </div>
+                        <div class="field-group">
+                            <label>Other Debt ($)</label>
+                            <input type="number" id="l-other" value="0" min="0" oninput="calcNW()">
                         </div>
                     </div>
                 </div>
 
-                <div style="margin-top: 48px;">
-                    <h3>Don't panic about negative numbers</h3>
-                    <p>It is perfectly normal for a student to have a negative net worth. You are currently investing in your most valuable asset: yourself and your earning potential. The goal of this tracker is to help you see that number move toward zero and then into positive territory as you graduate and start your career.</p>
+                <!-- RESULTS -->
+                <div>
+                    <div class="calc-panel">
+                        <div class="calc-panel-title">Your Financial Snapshot</div>
+
+                        <div class="stat-grid">
+                            <div class="stat-block">
+                                <div class="stat-label">Total Assets</div>
+                                <div class="stat-value" id="nw-assets">—</div>
+                            </div>
+                            <div class="stat-block danger">
+                                <div class="stat-label">Total Liabilities</div>
+                                <div class="stat-value danger" id="nw-liabilities">—</div>
+                            </div>
+                        </div>
+
+                        <div class="result-callout" id="nw-callout">
+                            <div class="rc-label">Your Net Worth</div>
+                            <div class="rc-value" id="nw-result">—</div>
+                        </div>
+
+                        <!-- Visual bar -->
+                        <div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 700; color: var(--muted); margin-bottom: 6px;">
+                                <span style="color: var(--primary);">Assets</span>
+                                <span style="color: var(--accent);">Liabilities</span>
+                            </div>
+                            <div class="nw-bar-wrap">
+                                <div class="nw-bar-assets" id="nw-bar-assets"></div>
+                                <div class="nw-bar-liabilities" id="nw-bar-liabilities"></div>
+                            </div>
+                        </div>
+
+                        <div class="chart-wrap">
+                            <canvas id="nwChart" height="260"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>Negative net worth is completely normal</h3>
+                        <p>As a student, you are investing in your highest-value asset: your earning potential. Most graduates start their careers with negative net worth due to student loans. The number that matters is the <em>trend</em> — use this tracker to confirm you are moving in the right direction each semester.</p>
+                    </div>
                 </div>
+
             </div>
+
+            <p class="calc-disclaimer">Asset and liability values are self-reported estimates. This tool is for educational purposes only and does not constitute financial advice.</p>
         </div>
     </section>
 
@@ -54,7 +133,69 @@
 
     <script src="js/components.js"></script>
     <script src="js/mobile-menu.js"></script>
-    <script src="js/calculators.js"></script>
     <script src="js/term-popups.js"></script>
+    <script>
+        const fmt = n => new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 0 }).format(n);
+
+        let nwChart;
+
+        function calcNW() {
+            const assets =
+                (parseFloat(document.getElementById('a-cash').value)    || 0) +
+                (parseFloat(document.getElementById('a-tfsa').value)    || 0) +
+                (parseFloat(document.getElementById('a-invest').value)  || 0) +
+                (parseFloat(document.getElementById('a-vehicle').value) || 0) +
+                (parseFloat(document.getElementById('a-other').value)   || 0);
+
+            const liabilities =
+                (parseFloat(document.getElementById('l-student').value) || 0) +
+                (parseFloat(document.getElementById('l-cc').value)      || 0) +
+                (parseFloat(document.getElementById('l-loc').value)     || 0) +
+                (parseFloat(document.getElementById('l-other').value)   || 0);
+
+            const nw = assets - liabilities;
+
+            document.getElementById('nw-assets').textContent      = fmt(assets);
+            document.getElementById('nw-liabilities').textContent = fmt(liabilities);
+            document.getElementById('nw-result').textContent      = fmt(nw);
+
+            const callout = document.getElementById('nw-callout');
+            callout.classList.toggle('danger', nw < 0);
+
+            // Visual bar
+            const total = assets + liabilities;
+            const assetPct = total > 0 ? (assets / total) * 100 : 50;
+            document.getElementById('nw-bar-assets').style.width      = assetPct + '%';
+            document.getElementById('nw-bar-liabilities').style.width = (100 - assetPct) + '%';
+
+            // Chart
+            const ctx = document.getElementById('nwChart').getContext('2d');
+            if (nwChart) nwChart.destroy();
+            nwChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Assets', 'Liabilities'],
+                    datasets: [{
+                        data: [assets, liabilities],
+                        backgroundColor: ['rgba(26,107,90,0.8)', 'rgba(232,97,74,0.8)'],
+                        borderRadius: 10,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { callback: v => '$' + (v >= 1000 ? (v / 1000).toFixed(0) + 'k' : v) }
+                        }
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('load', calcNW);
+    </script>
 </body>
 </html>

@@ -274,15 +274,28 @@
 <body>
     <div id="header-placeholder"></div>
 
-    <section class="section-padding">
+    <header class="calc-hero">
+        <div class="container">
+            <a href="calculators.html" class="back-link">&larr; Back to Calculators</a>
+            <h1>Monthly Student Budget Builder</h1>
+            <p class="calc-hero-desc">Enter your income and expenses to see your monthly position, compare against student benchmarks, and get personalised smart insights.</p>
+            <div class="calc-hero-pills">
+                <span class="calc-hero-pill">City-Adjusted Benchmarks</span>
+                <span class="calc-hero-pill">Smart Insights</span>
+                <span class="calc-hero-pill">PDF Export</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="section-padding" style="padding-top: 48px;">
         <div class="container budget-builder" id="budget-pdf-area">
-            
+
             <!-- STEP 0: THE QUIZ -->
             <div id="step-quiz" class="step-container active">
                 <div class="quiz-card">
                     <span class="subheading">Step 1 of 2</span>
                     <h2 style="font-family: 'Fraunces', serif; margin-top: 8px;">Where are you studying?</h2>
-                    <p>This helps us set realistic rent and life benchmarks for your area.</p>
+                    <p>This helps us set realistic rent and cost-of-living benchmarks for your city.</p>
                     
                     <div class="quiz-options">
                         <div class="quiz-opt" onclick="selectCity('tier1')">
@@ -624,7 +637,7 @@
             const list = document.getElementById('insights-list');
             list.innerHTML += `
                 <div class="insight-item">
-                    <div class="insight-icon">💡</div>
+                    <div class="insight-icon" style="background: #e6f3f0; color: var(--primary); font-weight: 800; font-size: 0.8rem;">i</div>
                     <p style="font-size: 0.95rem; line-height: 1.5;">${text}</p>
                 </div>
             `;
