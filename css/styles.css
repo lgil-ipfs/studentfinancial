@@ -350,12 +350,33 @@ footer {
     margin-bottom: 12px;
 }
 
+.footer-affiliate {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(26, 107, 90, 0.1);
+}
+
+.footer-affiliate-logo {
+    height: 40px;
+    width: auto;
+    flex-shrink: 0;
+    border-radius: 4px;
+}
+
+.footer-affiliate p {
+    color: #888;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
 .footer-disclaimer {
     color: #888;
     font-size: 0.8rem;
     line-height: 1.5;
-    padding-top: 40px;
-    border-top: 1px solid rgba(26, 107, 90, 0.1);
+    padding-top: 24px;
     margin-bottom: 20px;
 }
 

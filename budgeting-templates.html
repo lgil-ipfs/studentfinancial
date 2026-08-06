@@ -12,31 +12,45 @@
             background: linear-gradient(180deg, var(--bg) 0%, #fff 100%);
         }
 
-        .templates-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-        }
-
         .template-card {
             background: var(--white);
-            padding: 40px;
+            padding: 48px;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
             border-top: 5px solid var(--secondary);
+            max-width: 760px;
+            margin: 0 auto;
         }
 
         .template-card h3 {
             color: var(--primary);
             margin-bottom: 16px;
-            font-size: 1.5rem;
+            font-size: 1.7rem;
         }
 
-        .template-card p {
-            margin-bottom: 24px;
-            flex-grow: 1;
+        .template-card > p {
+            margin-bottom: 28px;
+        }
+
+        .template-tabs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px 24px;
+            margin-bottom: 32px;
+        }
+
+        .template-tabs li {
+            padding-left: 22px;
+            position: relative;
+            color: var(--text);
+        }
+
+        .template-tabs li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
         }
 
         .copy-btn {
@@ -57,21 +71,19 @@
             transform: translateY(-2px);
         }
 
-        .google-icon {
-            width: 24px;
-            height: 24px;
-        }
-
         .note-box {
             background: rgba(26, 107, 90, 0.05);
             padding: 24px;
             border-radius: 12px;
             margin-top: 40px;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
             border-left: 4px solid var(--primary);
         }
 
-        @media (max-width: 768px) {
-            .templates-grid { grid-template-columns: 1fr; }
+        @media (max-width: 576px) {
+            .template-tabs { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -80,59 +92,29 @@
 
     <header class="page-header">
         <div class="container">
-            <h1>Your money. Your plan. Your Google Sheets.</h1>
-            <p>Free, pre-built budgeting templates you can view instantly. Want to edit your own copy? You can request access right from Google Sheets. No software to install. No account needed here.</p>
+            <h1>Your money. Your plan. Your Google Sheet.</h1>
+            <p>One free, comprehensive spending plan template you can view instantly. Want to edit your own copy? You can request access right from Google Sheets. No software to install. No account needed here.</p>
         </div>
     </header>
 
     <section class="section-padding">
         <div class="container">
-            
-            <div class="templates-grid">
-                <!-- 1 -->
-                <div class="template-card">
-                    <h3>Monthly Student Budget</h3>
-                    <p>Track income, fixed expenses, variable expenses, and see your monthly surplus or deficit at a glance. Colour-coded and beginner-friendly.</p>
-                    <a href="https://docs.google.com/spreadsheets/d/1B-c_X_mJvCByR3_yC3U8y3S9H8Gv5w6e_O4A_E_x_x/copy" class="copy-btn" target="_blank">
-                        <span>View Template</span>
-                    </a>
-                </div>
 
-                <!-- 2 -->
-                <div class="template-card">
-                    <h3>Weekly Cash Flow Tracker</h3>
-                    <p>See exactly when money comes in and goes out. Avoid overdrafts and late fees by knowing your cash position week by week.</p>
-                    <a href="https://docs.google.com/spreadsheets/d/1B-c_X_mJvCByR3_yC3U8y3S9H8Gv5w6e_O4A_E_x_x/copy" class="copy-btn" target="_blank">
-                        <span>View Template</span>
-                    </a>
-                </div>
-
-                <!-- 3 -->
-                <div class="template-card">
-                    <h3>Student Net Worth Tracker</h3>
-                    <p>A simple snapshot of what you own vs. what you owe. Updated monthly, it shows your financial progress over time.</p>
-                    <a href="https://docs.google.com/spreadsheets/d/1B-c_X_mJvCByR3_yC3U8y3S9H8Gv5w6e_O4A_E_x_x/copy" class="copy-btn" target="_blank">
-                        <span>View Template</span>
-                    </a>
-                </div>
-
-                <!-- 4 -->
-                <div class="template-card">
-                    <h3>Debt Repayment Planner</h3>
-                    <p>The sheet automatically calculates your payoff timeline using both the avalanche and snowball methods based on your extra monthly payments.</p>
-                    <a href="https://docs.google.com/spreadsheets/d/1B-c_X_mJvCByR3_yC3U8y3S9H8Gv5w6e_O4A_E_x_x/copy" class="copy-btn" target="_blank">
-                        <span>View Template</span>
-                    </a>
-                </div>
-
-                <!-- 5 -->
-                <div class="template-card">
-                    <h3>TFSA/RRSP Contribution Tracker</h3>
-                    <p>Track your annual contribution room and contributions for both registered accounts side by side to ensure you never over-contribute.</p>
-                    <a href="https://docs.google.com/spreadsheets/d/1B-c_X_mJvCByR3_yC3U8y3S9H8Gv5w6e_O4A_E_x_x/copy" class="copy-btn" target="_blank">
-                        <span>View Template</span>
-                    </a>
-                </div>
+            <div class="template-card">
+                <h3>Complete Financial Spending Plan</h3>
+                <p>A single all-in-one Google Sheet covering everything from your monthly budget to your long-term goals. It includes:</p>
+                <ul class="template-tabs">
+                    <li>Monthly Spending Plan</li>
+                    <li>Personal Financial Snapshot</li>
+                    <li>Dashboard</li>
+                    <li>Goals Tracker</li>
+                    <li>Accounts</li>
+                    <li>Tax Savings</li>
+                    <li>Budget Link</li>
+                </ul>
+                <a href="https://docs.google.com/spreadsheets/d/17zQUAbBdKj6JEYIH6UAY_od7iSDD0XhGBIOnqNKUn90/edit?usp=sharing" class="copy-btn" target="_blank">
+                    <span>View Template</span>
+                </a>
             </div>
 
             <div class="note-box">
