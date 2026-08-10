@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cost of Spending Today | StudentFinancial.ca</title>
+    <meta name="description" content="See what a purchase today could be worth years from now if you invested it instead. An interactive way to visualize the trade-off — no guilt, just clarity.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/calculators.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <header class="calc-hero">
+        <div class="container">
+            <a href="calculators.html" class="back-link">&larr; Back to Calculators</a>
+            <h1>The Cost of Spending Today</h1>
+            <p class="calc-hero-desc">Move the slider to see what a purchase today could be worth years from now if you invested it instead. This isn't about guilt — it's about seeing the trade-off clearly so you can choose on purpose.</p>
+            <div class="calc-hero-pills">
+                <span class="calc-hero-pill">Opportunity Cost</span>
+                <span class="calc-hero-pill">Spend vs. Invest</span>
+                <span class="calc-hero-pill">No Judgment</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="calc-body">
+        <div class="container">
+            <div class="calc-layout">
+
+                <!-- INPUTS -->
+                <div>
+                    <div class="calc-panel">
+                        <div class="calc-panel-title">What are you thinking of spending?</div>
+
+                        <div class="slider-field">
+                            <div class="slider-header">
+                                <span>Amount you're considering spending</span>
+                                <span class="slider-val" id="oc-amount-val">$50</span>
+                            </div>
+                            <input type="range" class="styled-range" id="oc-amount" min="1" max="500" value="50" step="1" oninput="calcOpportunityCost()">
+                        </div>
+
+                        <div class="field-group">
+                            <label>Expected annual return if invested (%)</label>
+                            <input type="number" id="oc-return" value="7" min="0" max="30" step="0.5" oninput="calcOpportunityCost()">
+                        </div>
+                        <div class="field-group">
+                            <label>Years from now</label>
+                            <input type="number" id="oc-years" value="10" min="1" max="40" oninput="calcOpportunityCost()">
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>What this tool is (and isn't)</h3>
+                        <p>This calculator illustrates a trade-off, not a verdict. Spending money today is often the right call — on necessities, on things that support your wellbeing, or on moments that matter. It's simply easier to choose on purpose when you can see both sides.</p>
+                        <p style="margin-top: 10px;">Curious about the emotional side of this decision? <a href="article-cost-of-spending-today.html" style="color: var(--primary); font-weight: 700;">Read the article &rarr;</a></p>
+                    </div>
+                </div>
+
+                <!-- RESULTS -->
+                <div>
+                    <div class="calc-panel">
+                        <div class="calc-panel-title">The Trade-off</div>
+
+                        <div class="stat-grid">
+                            <div class="stat-block">
+                                <div class="stat-label">If spent today</div>
+                                <div class="stat-value" id="oc-spend-value">—</div>
+                            </div>
+                            <div class="stat-block accent">
+                                <div class="stat-label">If invested instead</div>
+                                <div class="stat-value accent" id="oc-invest-value">—</div>
+                            </div>
+                            <div class="stat-block" style="grid-column: span 2;">
+                                <div class="stat-label">What that spend could be costing you</div>
+                                <div class="stat-value" id="oc-tradeoff-value" style="font-size: 2.2rem;">—</div>
+                            </div>
+                        </div>
+
+                        <div class="chart-wrap">
+                            <canvas id="ocChart" height="280"></canvas>
+                            <div class="chart-legend">
+                                <div class="legend-item">
+                                    <div class="legend-dot" style="background: rgba(232,160,32,0.9);"></div>
+                                    If spent today (value stops here)
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-dot" style="background: rgba(26,107,90,0.9);"></div>
+                                    If invested instead
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="calc-disclaimer">This calculator uses simple annual compounding and hypothetical returns for illustration only. It does not account for taxes, fees, or inflation, and past investment returns do not guarantee future results. This tool is educational and does not constitute financial advice — and it is not a judgment about any purchase. Sometimes spending today is exactly the right decision.</p>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/term-popups.js"></script>
+    <script>
+        const fmt = n => new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 0 }).format(n);
+
+        let ocChart;
+
+        function calcOpportunityCost() {
+            const amount = parseFloat(document.getElementById('oc-amount').value) || 0;
+            const rate   = (parseFloat(document.getElementById('oc-return').value) || 0) / 100;
+            const years  = parseInt(document.getElementById('oc-years').value) || 0;
+
+            document.getElementById('oc-amount-val').textContent = fmt(amount);
+
+            const futureValue = amount * Math.pow(1 + rate, years);
+            const tradeoff = Math.max(0, futureValue - amount);
+
+            document.getElementById('oc-spend-value').textContent   = fmt(amount);
+            document.getElementById('oc-invest-value').textContent  = fmt(futureValue);
+            document.getElementById('oc-tradeoff-value').textContent = fmt(tradeoff);
+
+            const labels = [];
+            const spendLine = [];
+            const investLine = [];
+            for (let y = 0; y <= years; y++) {
+                labels.push(y === 0 ? 'Today' : 'Yr ' + y);
+                spendLine.push(amount);
+                investLine.push(amount * Math.pow(1 + rate, y));
+            }
+
+            const ctx = document.getElementById('ocChart').getContext('2d');
+            if (ocChart) ocChart.destroy();
+            ocChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [
+                        {
+                            label: 'If spent today',
+                            data: spendLine,
+                            borderColor: 'rgba(232,160,32,0.9)',
+                            backgroundColor: 'rgba(232,160,32,0.08)',
+                            borderDash: [6, 4],
+                            pointRadius: 0,
+                            fill: false,
+                            tension: 0
+                        },
+                        {
+                            label: 'If invested instead',
+                            data: investLine,
+                            borderColor: 'rgba(26,107,90,0.95)',
+                            backgroundColor: 'rgba(26,107,90,0.12)',
+                            pointRadius: 0,
+                            fill: true,
+                            tension: 0.25
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: c => ' ' + c.dataset.label + ': ' + fmt(c.parsed.y)
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            ticks: { callback: v => '$' + (v >= 1000 ? (v / 1000).toFixed(0) + 'k' : v) }
+                        }
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('load', calcOpportunityCost);
+    </script>
+</body>
+</html>
